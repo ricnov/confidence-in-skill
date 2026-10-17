@@ -1,0 +1,417 @@
+{
+ "panel": "cleaned panel, NY against the NYSLRS sheet's benchmark",
+ "B": 50000,
+ "plans": 42,
+ "plan_years": 799,
+ "above90": {
+  "sheet": 12,
+  "arith": 13,
+  "star": 13
+ },
+ "below10_star": 2,
+ "above50_star": 28,
+ "mean_cis_star": 0.654,
+ "ks_p_star": 0.0032,
+ "binom_p_above90": 0.0002,
+ "expected_above90_t": 4.56,
+ "drag_share_median": 0.134,
+ "drag_exceeds_gap": [
+  "NC TERS",
+  "NJ PERS",
+  "NYSTRS"
+ ],
+ "sign_flip_paper_vs_star": [
+  "NJ PERS"
+ ],
+ "median_sd_log_excess_pct": 1.66,
+ "BH_Holm": {
+  "0.05": {
+   "bh_out": 1,
+   "bh_under": 0,
+   "holm_out": 1,
+   "holm_under": 0
+  },
+  "0.1": {
+   "bh_out": 1,
+   "bh_under": 0,
+   "holm_out": 1,
+   "holm_under": 0
+  },
+  "0.2": {
+   "bh_out": 8,
+   "bh_under": 0,
+   "holm_out": 1,
+   "holm_under": 0
+  }
+ },
+ "bh20_outperformers": [
+  "NYSLRS",
+  "WV ERS",
+  "SCRSIC",
+  "MONT COUNTY ERS",
+  "SWIB",
+  "MASSPRIM",
+  "PA PSERS",
+  "MIZZOU PERS"
+ ],
+ "top5": {
+  "NYSLRS": {
+   "n": 16.0,
+   "t": 4.235,
+   "cis_star": 1.0,
+   "p_t": 0.0004,
+   "q_t": 0.0151
+  },
+  "WV ERS": {
+   "n": 17.0,
+   "t": 2.8045,
+   "cis_star": 0.9975,
+   "p_t": 0.0064,
+   "q_t": 0.1336
+  },
+  "SCRSIC": {
+   "n": 19.0,
+   "t": 2.2509,
+   "cis_star": 0.9878,
+   "p_t": 0.0186,
+   "q_t": 0.1643
+  },
+  "MONT COUNTY ERS": {
+   "n": 18.0,
+   "t": 2.2071,
+   "cis_star": 0.9863,
+   "p_t": 0.0207,
+   "q_t": 0.1643
+  },
+  "SWIB": {
+   "n": 18.0,
+   "t": 2.1503,
+   "cis_star": 0.9842,
+   "p_t": 0.0231,
+   "q_t": 0.1643
+  }
+ },
+ "bottom3": {
+  "CalPERS": {
+   "n": 19.0,
+   "t": -0.8813,
+   "cis_star": 0.1891,
+   "p_t": 0.8051
+  },
+  "NYC TRS": {
+   "n": 16.0,
+   "t": -1.2854,
+   "cis_star": 0.0993,
+   "p_t": 0.8909
+  },
+  "DAL F&P": {
+   "n": 13.0,
+   "t": -2.234,
+   "cis_star": 0.0127,
+   "p_t": 0.9774
+  }
+ },
+ "normal_minus_t_pct": {
+  "mean_abs": 0.52,
+  "max_abs": 1.28
+ },
+ "mean_pairwise_corr_excess": 0.258,
+ "median_pairwise_corr_excess": 0.302,
+ "bootstrap": {
+  "count_obs": 13,
+  "count_null_mean": 4.6,
+  "count_null_95": 14,
+  "count_null_99": 21,
+  "count_P": 0.071,
+  "count_P_tref": 0.0594,
+  "max_t_null_95": 3.25,
+  "max_t_null_99": 3.95,
+  "min_t_null_5": -3.28
+ },
+ "adjusted_p_top": {
+  "NYSLRS": {
+   "t": 4.235,
+   "n": 16,
+   "p_single_up": 0.0051,
+   "p_stepdown_up": 0.0051
+  },
+  "WV ERS": {
+   "t": 2.8045,
+   "n": 17,
+   "p_single_up": 0.1381,
+   "p_stepdown_up": 0.1332
+  },
+  "SCRSIC": {
+   "t": 2.2509,
+   "n": 19,
+   "p_single_up": 0.3702,
+   "p_stepdown_up": 0.3587
+  },
+  "MONT COUNTY ERS": {
+   "t": 2.2071,
+   "n": 18,
+   "p_single_up": 0.3947,
+   "p_stepdown_up": 0.3807
+  }
+ },
+ "adjusted_p_bottom": {
+  "CalPERS": {
+   "t": -0.8813,
+   "n": 19,
+   "p_single_down": 0.9833
+  },
+  "NYC TRS": {
+   "t": -1.2854,
+   "n": 16,
+   "p_single_down": 0.9028
+  },
+  "DAL F&P": {
+   "t": -2.234,
+   "n": 13,
+   "p_single_down": 0.3843
+  }
+ },
+ "independence": {
+  "max_t_95": 3.57,
+  "count_95": 8,
+  "P_count_ge_obs": 0.0004
+ },
+ "dispersion": {
+  "all": {
+   "excluded": [],
+   "funds": 42,
+   "table": {
+    "count": {
+     "observed": 13.0,
+     "null_mean": 4.6009,
+     "null_rms": 6.4315,
+     "null_q": 14.0,
+     "p": 0.071
+    },
+    "max_t": {
+     "observed": 4.235,
+     "null_mean": 2.0909,
+     "null_rms": 2.195,
+     "null_q": 3.2507,
+     "p": 0.0051
+    },
+    "min_t": {
+     "observed": -2.234,
+     "null_mean": -2.0984,
+     "null_rms": 2.2034,
+     "null_q": -3.281,
+     "p": 0.3843
+    },
+    "sd_mean": {
+     "observed": 0.0083,
+     "null_mean": 0.005,
+     "null_rms": 0.0051,
+     "null_q": 0.0069,
+     "p": 0.0015
+    },
+    "sd_t": {
+     "observed": 1.2643,
+     "null_mean": 0.9289,
+     "null_rms": 0.9377,
+     "null_q": 1.15,
+     "p": 0.009
+    },
+    "sum_t2": {
+     "observed": 84.3584,
+     "null_mean": 46.884,
+     "null_rms": 51.1027,
+     "null_q": 86.5717,
+     "p": 0.0552
+    },
+    "half_chi2": {
+     "observed": 26.2691,
+     "null_mean": 48.1193,
+     "null_rms": 52.2696,
+     "null_q": 88.424,
+     "p": 0.9317
+    },
+    "max_half": {
+     "observed": 2.8292,
+     "null_mean": 2.5939,
+     "null_rms": 2.6652,
+     "null_q": 3.6851,
+     "p": 0.3069
+    }
+   },
+   "tau_pct": 0.66
+  },
+  "without_top_bottom": {
+   "excluded": [
+    "NYSLRS",
+    "DAL F&P"
+   ],
+   "funds": 40,
+   "table": {
+    "count": {
+     "observed": 12.0,
+     "null_mean": 4.368,
+     "null_rms": 6.1932,
+     "null_q": 14.0,
+     "p": 0.0805
+    },
+    "max_t": {
+     "observed": 2.8045,
+     "null_mean": 2.0516,
+     "null_rms": 2.1594,
+     "null_q": 3.23,
+     "p": 0.1301
+    },
+    "min_t": {
+     "observed": -1.2854,
+     "null_mean": -2.0616,
+     "null_rms": 2.1699,
+     "null_q": -3.2617,
+     "p": 0.8895
+    },
+    "sd_mean": {
+     "observed": 0.0055,
+     "null_mean": 0.0045,
+     "null_rms": 0.0046,
+     "null_q": 0.0064,
+     "p": 0.1509
+    },
+    "sd_t": {
+     "observed": 1.0667,
+     "null_mean": 0.9221,
+     "null_rms": 0.9318,
+     "null_q": 1.1567,
+     "p": 0.138
+    },
+    "sum_t2": {
+     "observed": 61.4323,
+     "null_mean": 44.5785,
+     "null_rms": 48.9454,
+     "null_q": 84.1618,
+     "p": 0.1535
+    },
+    "half_chi2": {
+     "observed": 17.8391,
+     "null_mean": 45.8767,
+     "null_rms": 50.1753,
+     "null_q": 86.0614,
+     "p": 0.9901
+    },
+    "max_half": {
+     "observed": 1.3473,
+     "null_mean": 2.5627,
+     "null_rms": 2.6374,
+     "null_q": 3.6706,
+     "p": 0.9973
+    }
+   },
+   "tau_pct": 0.3
+  },
+  "without_extremes": {
+   "excluded": [
+    "NYSLRS",
+    "DAL F&P",
+    "WV ERS"
+   ],
+   "funds": 39,
+   "table": {
+    "count": {
+     "observed": 11.0,
+     "null_mean": 4.259,
+     "null_rms": 5.9636,
+     "null_q": 13.0,
+     "p": 0.0894
+    },
+    "max_t": {
+     "observed": 2.2509,
+     "null_mean": 2.0506,
+     "null_rms": 2.1578,
+     "null_q": 3.2256,
+     "p": 0.3473
+    },
+    "min_t": {
+     "observed": -1.2854,
+     "null_mean": -2.0605,
+     "null_rms": 2.1683,
+     "null_q": -3.2555,
+     "p": 0.8895
+    },
+    "sd_mean": {
+     "observed": 0.0049,
+     "null_mean": 0.0045,
+     "null_rms": 0.0046,
+     "null_q": 0.0063,
+     "p": 0.3023
+    },
+    "sd_t": {
+     "observed": 1.0212,
+     "null_mean": 0.9288,
+     "null_rms": 0.9384,
+     "null_q": 1.163,
+     "p": 0.2327
+    },
+    "sum_t2": {
+     "observed": 53.567,
+     "null_mean": 43.4314,
+     "null_rms": 47.3431,
+     "null_q": 80.2782,
+     "p": 0.215
+    },
+    "half_chi2": {
+     "observed": 17.4673,
+     "null_mean": 44.687,
+     "null_rms": 48.5911,
+     "null_q": 82.3148,
+     "p": 0.9901
+    },
+    "max_half": {
+     "observed": 1.3473,
+     "null_mean": 2.5577,
+     "null_rms": 2.6312,
+     "null_q": 3.6535,
+     "p": 0.9973
+    }
+   },
+   "tau_pct": 0.16
+  }
+ },
+ "persistence": {
+  "pearson": 0.702,
+  "pearson_null_95": 0.458,
+  "pearson_P": 0.0003,
+  "spearman": 0.586,
+  "spearman_null_95": 0.287,
+  "spearman_P": 0.0001,
+  "spearman_without_extremes": 0.511
+ },
+ "crossings": {
+  "1": {
+   "observed": 31,
+   "null_mean": 25.8,
+   "null_95": 33,
+   "P": 0.165
+  },
+  "10": {
+   "observed": 15,
+   "null_mean": 9.2,
+   "null_95": 20,
+   "P": 0.174
+  }
+ },
+ "peer": {
+  "pairs": 861,
+  "median_se_bp": 55,
+  "median_absdiff_bp": 54,
+  "pairs_5pct": 134,
+  "bh10_pairs": 6,
+  "pairs_without_extremes": 741,
+  "share_5pct_without": 0.074,
+  "bh10_without": 0,
+  "benchmark_corr_mean": 0.77,
+  "benchmark_corr_p10": 0.37,
+  "var_share_benchmark": 0.9,
+  "calpers_vs_nvpers": {
+   "diff_bp": -61,
+   "p": 0.36
+  }
+ }
+}

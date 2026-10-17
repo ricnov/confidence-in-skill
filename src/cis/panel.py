@@ -13,7 +13,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-__all__ = ["load_workbook_panel", "load_panel", "log_excess_matrix"]
+__all__ = ["load_workbook_panel", "load_panel", "log_excess_matrix", "clean_panel", "SP500_FY_JUNE", "DATA_PROBLEMS"]
 
 _SKIP = {"Dist", "Stat", "Main"}
 _SUFFIX = re.compile(r"\s+\d{2}-\d{2}(Q\d)?$")
@@ -100,3 +100,42 @@ def load_panel(path: str | Path) -> tuple[pd.DataFrame, pd.DataFrame]:
     else:
         meta = pd.DataFrame(index=pd.Index(sorted(panel["fund"].unique()), name="fund"))
     return panel, meta
+
+
+# S&P 500 total return, fiscal years ending 30 June (FY2024 = 24.56% per fund reports; the series
+# coincides with the LASERS sheet's benchmark column for FY2010-2025 to the decimal).
+SP500_FY_JUNE = {2010: .1443, 2011: .3069, 2012: .0545, 2013: .2060, 2014: .2461, 2015: .0742, 2016: .0399,
+                 2017: .1790, 2018: .1437, 2019: .1042, 2020: .0751, 2021: .4079, 2022: -.1062, 2023: .1959,
+                 2024: .2456, 2025: .1516}
+
+DATA_PROBLEMS = {
+    "LASERS": "benchmark column is the S&P 500 total return for fiscal 2010-2025 (16 of 19 years to the "
+              "decimal), not the plan's policy benchmark",
+    "NJ TPAF": "same investment programme as NJ PERS (New Jersey Common Pension Fund): identical benchmark "
+               "in all 13 common years, actual returns within 0.3%",
+    "NJDRPB": "same investment programme as NJ PERS: actual returns identical in 21 of 24 common years",
+    "PA SERS": "duplicates the PA PSERS sheet: identical actual returns in 19 of 22 common years and "
+               "identical benchmarks in 20 (the two systems report different returns)",
+    "NYSCRF": "the New York State Common Retirement Fund, which is the NYSLRS asset pool: actual returns "
+              "identical to the NYSLRS sheet in all 13 common years, with a different benchmark column",
+}
+
+
+def clean_panel(panel: pd.DataFrame, ny_benchmark: str = "NYSLRS") -> pd.DataFrame:
+    """The article's panel reduced to distinct, correctly benchmarked programmes (42 of the 47 rows).
+
+    Drops LASERS (benchmark is the S&P 500), NJ TPAF and NJDRPB (the New Jersey Common Pension Fund
+    appears three times; NJ PERS is kept, whose benchmark agrees with NJ TPAF's in every common year),
+    PA SERS (a copy of PA PSERS for 20 of 22 years) and NYSCRF (the same fund as NYSLRS). The New York
+    fund is kept once, under the name NYSLRS, measured against the NYSLRS sheet's benchmark by default;
+    with ny_benchmark="NYSCRF" it is measured instead against the NYSCRF sheet's benchmark over the 13
+    years that sheet covers.
+    """
+    out = panel[~panel["fund"].isin(DATA_PROBLEMS)].copy()
+    if ny_benchmark == "NYSCRF":
+        alt = panel[panel["fund"] == "NYSCRF"].set_index("year")["benchmark"]
+        ny = out["fund"] == "NYSLRS"
+        out = out[~ny | out["year"].isin(alt.index)].copy()
+        ny = out["fund"] == "NYSLRS"
+        out.loc[ny, "benchmark"] = out.loc[ny, "year"].map(alt).values
+    return out.reset_index(drop=True)
