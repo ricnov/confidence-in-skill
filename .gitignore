@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+# the author's workbook itself is not distributed; the transcribed panel is (see data/DATA.md)
+data/*.xlsx
+results/raw_results.csv
+paper/*.aux
+paper/*.log
+paper/*.out
+# the manuscript is added on submission; the corrections file goes to the journal, not here
+paper/cis_paper.*
+errata/
