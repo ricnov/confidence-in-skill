@@ -52,6 +52,11 @@ scripts/run_framework_tests.py      confidence as a forecast: record-and-sequel 
                                     4.8; pre-specification in the docstring; results/framework_tests_*.json)
 scripts/run_assumed_rate.py         the statistic against the actuarial assumed rate (paper Section 6;
                                     results/assumed_rate_nine.csv)
+scripts/run_timing_models.py        Jensen, Treynor-Mazuy and Henriksson-Merton regressions inside the framework:
+                                    per plan, pooled with year-clustered s.e., and panel-level restricted
+                                    bootstraps with min-p adjustment (paper Section 4.9; results/timing_models_*.json/.csv)
+scripts/make_corrected_exhibits.py  corrected versions of the article's Table 1, Appendices I-III and Figures 1, 2, 4, 5
+                                    for the journal's online update (arithmetic numerator; model-consistent alongside)
 src/cis/panel_extra.py              loader for the second workbook's nine sheets
 results/fund_statistics.csv         per-fund statistics on the annual returns (every column of the paper's Appendix A)
 paper/                 the paper's figures and generated tables: paper/build_paper_inputs.py (tables, Figure 2),
@@ -107,6 +112,17 @@ over-shrinking DAL F&P. The posterior probability of skill under the cross-secti
 The same script measures the common component of excess returns (a quarter of the variance, a two-year
 reversal, exposure proportional to tracking error and near zero for the surviving records). The 42-programme
 version runs on the public data: `python scripts/run_framework_tests.py data/panel_returns.csv --clean`.
+
+`scripts/run_timing_models.py` relaxes the framework's two implicit assumptions, unit beta and no timing,
+with Jensen, Treynor-Mazuy and Henriksson-Merton regressions of the log excess return on the benchmark's log
+return. Pooled with plan fixed effects and year-clustered standard errors the panel is unit-beta (β − 1 =
+0.02 ± 0.04) with no convexity (γ ≈ 0 on either model); plan by plan the coefficients are fitted through
+fiscal 2009, 2021 and 2022, and the Henriksson-Merton regressor is non-zero in three years for the median
+plan. Freeing the beta inflates the standard error of alpha by √(1 + ℓ̄²/s²) ≈ 1.3 and leaves the panel
+indistinguishable from no selection skill anywhere; with it fixed at one (the framework's statistic) the
+panel rejects. Several high-confidence records are beta rather than selection (PA PSERS 1.25, MIZZOU 1.21,
+Indiana 1.07, CalSTRS 1.10); SWIB's and NYSLRS's are selection. The 42-programme version runs on the public
+data: `python scripts/run_timing_models.py data/panel_returns.csv --clean`.
 
 ## Results on the annual returns
 
