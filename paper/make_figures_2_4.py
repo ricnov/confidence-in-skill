@@ -5,7 +5,8 @@
 Figure 2  Two benchmark columns: (a) the LASERS sheet's benchmark against the S&P 500 total return,
           fiscal years; (b) the New York fund's cumulative log excess return against each of its two
           benchmark columns, 2013-2025.
-Figure 3  Persistence: second-half against first-half mean log excess return, 42 programmes.
+Figure 3  (no longer in the paper; kept for the record) Persistence: second-half against first-half mean
+          log excess return, 42 programmes. The paper's Figure 3 is now paper/make_figure_forecast.py.
 Figure 4  CalSTRS's expanding-window confidence path with the article's numerator, the model-consistent
           numerator, and the constant-gap reference curve.
 """

@@ -47,11 +47,17 @@ scripts/run_peer_comparison.py      what comparisons between plans are worth (pa
 scripts/data_checks.py              benchmark columns that are the S&P 500; sheets that duplicate each other
 scripts/run_everything.py           every number the paper quotes, from one command (results/summary_*.json)
 scripts/build_extended_panel.py     the 50-programme panel with the nine further plans (second workbook)
+scripts/run_framework_tests.py      confidence as a forecast: record-and-sequel tests, shrinkage, posterior
+                                    probabilities, the common component of excess returns (paper Sections 4.3,
+                                    4.8; pre-specification in the docstring; results/framework_tests_*.json)
+scripts/run_assumed_rate.py         the statistic against the actuarial assumed rate (paper Section 6;
+                                    results/assumed_rate_nine.csv)
 src/cis/panel_extra.py              loader for the second workbook's nine sheets
 results/fund_statistics.csv         per-fund statistics on the annual returns (every column of the paper's Appendix A)
-paper/                 the paper's figures and generated tables: paper/build_paper_inputs.py (tables, Figure 2)
-                       and paper/make_figures_2_4.py (Figures 1, 3, 4) from the cleaned panel; the manuscript
-                       is added on submission
+paper/                 the paper's figures and generated tables: paper/build_paper_inputs.py (tables, Figure 2),
+                       paper/make_figures_2_4.py (Figures 1, 4 and the half-sample persistence scatter) and
+                       paper/make_figure_forecast.py (Figure 3) from the panel; the manuscript is added on
+                       submission
 tests/test_core.py     identity, BH/Holm, and reproduction of the published-column results
 ```
 
@@ -89,6 +95,18 @@ programmes, with the Wisconsin Core Fund series replacing the first workbook's S
 2014) and Maine PERS's fiscal 2020 dropped (benchmark recorded as 0.0): 50 programmes, 927 plan-years.
 `results/summary_extended.json` holds every statistic on it. The returns of the nine are not yet
 distributed here; the loader and results are.
+
+`scripts/run_framework_tests.py` asks what a confidence value is worth as a forecast. Each programme is
+split at its tenth observed year (the framework's first look) into a record and a sequel: on the 50
+programmes, fifteen were at or above 90% after ten years and went on to beat their benchmarks by 66 bp
+a year against −4 bp for the other 35 (P = 0.02 under the year-cluster null; 14 of 15 positive); the
+record forecasts the sequel better than zero (MSE ratio 0.69, P = 0.006) but is no closer than zero for
+the median programme, and an empirical-Bayes shrinkage of the record beats it for 28 of 50 while
+over-shrinking DAL F&P. The posterior probability of skill under the cross-section's normal prior is
+Φ(t·τ/√(τ²+se²)); with τ = 56 bp a 90% confidence is an 86% probability at the median tracking error.
+The same script measures the common component of excess returns (a quarter of the variance, a two-year
+reversal, exposure proportional to tracking error and near zero for the surviving records). The 42-programme
+version runs on the public data: `python scripts/run_framework_tests.py data/panel_returns.csv --clean`.
 
 ## Results on the annual returns
 
