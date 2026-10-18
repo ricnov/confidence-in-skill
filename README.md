@@ -47,8 +47,9 @@ scripts/run_peer_comparison.py      what comparisons between plans are worth (pa
 scripts/data_checks.py              benchmark columns that are the S&P 500; sheets that duplicate each other
 scripts/run_everything.py           every number the paper quotes, from one command (results/summary_*.json)
 results/fund_statistics.csv         per-fund statistics on the annual returns (every column of the paper's Appendix A)
-paper/                 the paper's figure and generated tables, built by paper/build_paper_inputs.py from
-                       the cleaned panel (same seeds as the paper); the manuscript is added on submission
+paper/                 the paper's figures and generated tables: paper/build_paper_inputs.py (tables, Figure 2)
+                       and paper/make_figures_2_4.py (Figures 1, 3, 4) from the cleaned panel; the manuscript
+                       is added on submission
 tests/test_core.py     identity, BH/Holm, and reproduction of the published-column results
 ```
 
