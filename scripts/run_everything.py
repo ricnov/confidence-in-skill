@@ -28,6 +28,7 @@ ap.add_argument("--clean", action="store_true")
 ap.add_argument("--ny", default="NYSLRS")
 ap.add_argument("--B", type=int, default=50000)
 ap.add_argument("--out", default=None)
+ap.add_argument("--extremes", default="NYSLRS,LASERS,DAL F&P,WV ERS", help="comma-separated plans left out in the without_extremes set")
 a = ap.parse_args()
 
 panel, meta = load_panel(a.panel)
@@ -108,7 +109,7 @@ S["independence"]["P_count_ge_obs"] = round(float(1 - cdf[obs_count - 1]), 4)
 print("bootstrap:", S["bootstrap"]); print(adj.head(4).round(4).to_string()); print(adj.tail(2).round(4).to_string())
 
 # ---------------------------------------------------------------- dispersion / time variation / persistence
-extremes = [f for f in ["NYSLRS", "LASERS", "DAL F&P", "WV ERS"] if f in mat.columns]
+extremes = [f for f in a.extremes.split(",") if f in mat.columns]
 sets = {"all": [], "without_top_bottom": [f for f in [adj.index[0], adj.index[-1]] if f in mat.columns], "without_extremes": extremes}
 S["dispersion"] = {}
 for key, excl in sets.items():

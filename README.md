@@ -46,6 +46,8 @@ scripts/run_dispersion_tests.py     the panel-level tests (results/dispersion_te
 scripts/run_peer_comparison.py      what comparisons between plans are worth (paper Section 4.6)
 scripts/data_checks.py              benchmark columns that are the S&P 500; sheets that duplicate each other
 scripts/run_everything.py           every number the paper quotes, from one command (results/summary_*.json)
+scripts/build_extended_panel.py     the 50-programme panel with the nine further plans (second workbook)
+src/cis/panel_extra.py              loader for the second workbook's nine sheets
 results/fund_statistics.csv         per-fund statistics on the annual returns (every column of the paper's Appendix A)
 paper/                 the paper's figures and generated tables: paper/build_paper_inputs.py (tables, Figure 2)
                        and paper/make_figures_2_4.py (Figures 1, 3, 4) from the cleaned panel; the manuscript
@@ -78,6 +80,15 @@ sheet copies PA PSERS in 20 of 22 years. `cis.panel.clean_panel` reduces the pan
 `scripts/run_everything.py --clean` reproduces every number in the paper on it (`--ny NYSCRF` measures
 New York against the other column). The article's two extreme results — a plan at 0% and a plan at
 100% — are these two benchmark columns.
+
+## Nine further plans (second workbook, October 2026)
+
+`cis.panel_extra.load_extra_workbook` parses the second workbook's nine sheets (each laid out
+differently) into the same tidy panel; `scripts/build_extended_panel.py` appends them to the 42
+programmes, with the Wisconsin Core Fund series replacing the first workbook's SWIB sheet (wrong before
+2014) and Maine PERS's fiscal 2020 dropped (benchmark recorded as 0.0): 50 programmes, 927 plan-years.
+`results/summary_extended.json` holds every statistic on it. The returns of the nine are not yet
+distributed here; the loader and results are.
 
 ## Results on the annual returns
 
