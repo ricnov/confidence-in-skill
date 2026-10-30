@@ -57,6 +57,10 @@ scripts/run_timing_models.py        Jensen, Treynor-Mazuy and Henriksson-Merton 
                                     bootstraps with min-p adjustment (paper Section 4.9; results/timing_models_*.json/.csv)
 scripts/make_corrected_exhibits.py  corrected versions of the article's Table 1, Appendices I-III and Figures 1, 2, 4, 5
                                     for the journal's online update (arithmetic numerator; model-consistent alongside)
+scripts/run_predictive_calibration.py  confidence read as a probability of outperforming: the predictive probability
+                                    over the next H years, its calibration on the record/sequel split (Brier and log
+                                    scores against the base rate), and the effective number of independent tests
+                                    implied by the year-cluster null (results/predictive_calibration.json)
 src/cis/panel_extra.py              loader for the second workbook's nine sheets
 results/fund_statistics.csv         per-fund statistics on the annual returns (every column of the paper's Appendix A)
 paper/                 the paper's figures and generated tables: paper/build_paper_inputs.py (tables, Figure 2),
@@ -108,7 +112,7 @@ a year against −4 bp for the other 35 (P = 0.02 under the year-cluster null; 1
 record forecasts the sequel better than zero (MSE ratio 0.69, P = 0.006) but is no closer than zero for
 the median programme, and an empirical-Bayes shrinkage of the record beats it for 28 of 50 while
 over-shrinking DAL F&P. The posterior probability of skill under the cross-section's normal prior is
-Φ(t·τ/√(τ²+se²)); with τ = 56 bp a 90% confidence is an 86% probability at the median tracking error.
+Φ(t·τ/√(τ²+se²)); with τ = 56 bp a 90% confidence after sixteen years is an 85% probability at the median tracking error.
 The same script measures the common component of excess returns (a quarter of the variance, a two-year
 reversal, exposure proportional to tracking error and near zero for the surviving records). The 42-programme
 version runs on the public data: `python scripts/run_framework_tests.py data/panel_returns.csv --clean`.
@@ -123,6 +127,16 @@ indistinguishable from no selection skill anywhere; with it fixed at one (the fr
 panel rejects. Several high-confidence records are beta rather than selection (PA PSERS 1.25, MIZZOU 1.21,
 Indiana 1.07, CalSTRS 1.10); SWIB's and NYSLRS's are selection. The 42-programme version runs on the public
 data: `python scripts/run_timing_models.py data/panel_returns.csv --clean`.
+
+`scripts/run_predictive_calibration.py` asks what a confidence value is worth to a trustee. Under the
+cross-section's normal prior the probability of being ahead over the next H years is
+Φ(w·d̄ / √(v + σ²/H)); a 90% confidence after sixteen years at the median tracking error is a 58% chance of
+being ahead next year, 67% over five years, 76% over twenty. Read as a probability of a positive sequel,
+the framework's confidence is calibrated at the top (the ≥90% group said 96% and delivered 93%) and
+wrong elsewhere (lowest tercile 27% forecast, 59% realised); on the log score it does worse than the base
+rate on both panels, while the predictive probability is calibrated within sampling error. The same
+script gives the effective number of independent tests from the year-cluster null: the 42 dependent
+confidence values are worth about eight independent ones (the 50 about nine).
 
 ## Results on the annual returns
 

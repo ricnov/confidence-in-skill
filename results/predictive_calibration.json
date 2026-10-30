@@ -1,0 +1,1172 @@
+{
+ "calibration_extended": {
+  "programmes": 50,
+  "tau_record_bp": 50.3,
+  "base_rate_positive_sequel": 0.68,
+  "brier": {
+   "naive_cis": 0.238,
+   "predictive": 0.214,
+   "base_rate": 0.218,
+   "coin": 0.25
+  },
+  "log_score": {
+   "naive_cis": -0.754,
+   "predictive": -0.62,
+   "base_rate": -0.627
+  },
+  "terciles_p_naive": {
+   "low": {
+    "n": 17,
+    "forecast": 0.266,
+    "realised": 0.588,
+    "sequel_bp": -8.553
+   },
+   "mid": {
+    "n": 16,
+    "forecast": 0.68,
+    "realised": 0.5,
+    "sequel_bp": -5.307
+   },
+   "high": {
+    "n": 17,
+    "forecast": 0.955,
+    "realised": 0.941,
+    "sequel_bp": 64.785
+   }
+  },
+  "terciles_p_pred": {
+   "low": {
+    "n": 17,
+    "forecast": 0.405,
+    "realised": 0.588,
+    "sequel_bp": -8.553
+   },
+   "mid": {
+    "n": 16,
+    "forecast": 0.551,
+    "realised": 0.562,
+    "sequel_bp": 10.424
+   },
+   "high": {
+    "n": 17,
+    "forecast": 0.808,
+    "realised": 0.882,
+    "sequel_bp": 49.979
+   }
+  },
+  "group_at_or_above_90": {
+   "n": 15,
+   "naive": 0.964,
+   "predictive": 0.81,
+   "realised": 0.933
+  },
+  "group_below_50": {
+   "n": 14,
+   "naive": 0.213,
+   "predictive": 0.383,
+   "realised": 0.571
+  },
+  "per_plan": {
+   "FL SBA": {
+    "n_record": 10.0,
+    "t_record": 5.86,
+    "cis_record": 100.0,
+    "n_sequel": 5.0,
+    "mean_sequel_bp": 25.69,
+    "p_naive": 1.0,
+    "p_pred": 0.9994,
+    "y": 1.0
+   },
+   "NYSLRS": {
+    "n_record": 10.0,
+    "t_record": 5.46,
+    "cis_record": 100.0,
+    "n_sequel": 6.0,
+    "mean_sequel_bp": 27.56,
+    "p_naive": 1.0,
+    "p_pred": 0.9958,
+    "y": 1.0
+   },
+   "SWIB": {
+    "n_record": 10.0,
+    "t_record": 4.36,
+    "cis_record": 100.0,
+    "n_sequel": 6.0,
+    "mean_sequel_bp": 65.45,
+    "p_naive": 1.0,
+    "p_pred": 0.9954,
+    "y": 1.0
+   },
+   "WV ERS": {
+    "n_record": 10.0,
+    "t_record": 3.1,
+    "cis_record": 99.9,
+    "n_sequel": 7.0,
+    "mean_sequel_bp": 189.9,
+    "p_naive": 0.999,
+    "p_pred": 0.8164,
+    "y": 1.0
+   },
+   "AZSRS": {
+    "n_record": 10.0,
+    "t_record": 3.08,
+    "cis_record": 99.9,
+    "n_sequel": 6.0,
+    "mean_sequel_bp": -38.88,
+    "p_naive": 0.999,
+    "p_pred": 0.9513,
+    "y": 0.0
+   },
+   "MONT COUNTY ERS": {
+    "n_record": 10.0,
+    "t_record": 2.12,
+    "cis_record": 98.31,
+    "n_sequel": 8.0,
+    "mean_sequel_bp": 52.4,
+    "p_naive": 0.983,
+    "p_pred": 0.8967,
+    "y": 1.0
+   },
+   "MASSPRIM": {
+    "n_record": 10.0,
+    "t_record": 2.04,
+    "cis_record": 97.91,
+    "n_sequel": 5.0,
+    "mean_sequel_bp": 214.5,
+    "p_naive": 0.9793,
+    "p_pred": 0.8005,
+    "y": 1.0
+   },
+   "Ohio PERS": {
+    "n_record": 10.0,
+    "t_record": 1.92,
+    "cis_record": 97.25,
+    "n_sequel": 6.0,
+    "mean_sequel_bp": 20.52,
+    "p_naive": 0.9726,
+    "p_pred": 0.8529,
+    "y": 1.0
+   },
+   "KPERS": {
+    "n_record": 10.0,
+    "t_record": 1.76,
+    "cis_record": 96.06,
+    "n_sequel": 25.0,
+    "mean_sequel_bp": 12.01,
+    "p_naive": 0.9608,
+    "p_pred": 0.6971,
+    "y": 1.0
+   },
+   "INPRS": {
+    "n_record": 10.0,
+    "t_record": 1.63,
+    "cis_record": 94.82,
+    "n_sequel": 6.0,
+    "mean_sequel_bp": 52.8,
+    "p_naive": 0.9484,
+    "p_pred": 0.7704,
+    "y": 1.0
+   },
+   "MIZZOU PERS": {
+    "n_record": 10.0,
+    "t_record": 1.6,
+    "cis_record": 94.5,
+    "n_sequel": 3.0,
+    "mean_sequel_bp": 68.09,
+    "p_naive": 0.9452,
+    "p_pred": 0.654,
+    "y": 1.0
+   },
+   "SCRSIC": {
+    "n_record": 10.0,
+    "t_record": 1.54,
+    "cis_record": 93.84,
+    "n_sequel": 9.0,
+    "mean_sequel_bp": 96.84,
+    "p_naive": 0.9382,
+    "p_pred": 0.7661,
+    "y": 1.0
+   },
+   "NVPERS": {
+    "n_record": 10.0,
+    "t_record": 1.39,
+    "cis_record": 91.72,
+    "n_sequel": 11.0,
+    "mean_sequel_bp": 8.78,
+    "p_naive": 0.9177,
+    "p_pred": 0.8096,
+    "y": 1.0
+   },
+   "M PERS": {
+    "n_record": 10.0,
+    "t_record": 1.36,
+    "cis_record": 91.34,
+    "n_sequel": 3.0,
+    "mean_sequel_bp": 165.1,
+    "p_naive": 0.9131,
+    "p_pred": 0.546,
+    "y": 1.0
+   },
+   "TX ERS": {
+    "n_record": 10.0,
+    "t_record": 1.33,
+    "cis_record": 90.86,
+    "n_sequel": 3.0,
+    "mean_sequel_bp": 31.55,
+    "p_naive": 0.9082,
+    "p_pred": 0.5998,
+    "y": 1.0
+   },
+   "VRS": {
+    "n_record": 10.0,
+    "t_record": 1.23,
+    "cis_record": 89.16,
+    "n_sequel": 11.0,
+    "mean_sequel_bp": 71.89,
+    "p_naive": 0.8907,
+    "p_pred": 0.7565,
+    "y": 1.0
+   },
+   "Colorado PERA": {
+    "n_record": 10.0,
+    "t_record": 1.14,
+    "cis_record": 87.23,
+    "n_sequel": 6.0,
+    "mean_sequel_bp": 37.15,
+    "p_naive": 0.8729,
+    "p_pred": 0.7256,
+    "y": 1.0
+   },
+   "PA PSERS": {
+    "n_record": 10.0,
+    "t_record": 1.12,
+    "cis_record": 86.93,
+    "n_sequel": 12.0,
+    "mean_sequel_bp": 100.22,
+    "p_naive": 0.8686,
+    "p_pred": 0.5794,
+    "y": 1.0
+   },
+   "NYC BERS": {
+    "n_record": 10.0,
+    "t_record": 0.8,
+    "cis_record": 78.95,
+    "n_sequel": 5.0,
+    "mean_sequel_bp": -69.02,
+    "p_naive": 0.7881,
+    "p_pred": 0.6306,
+    "y": 0.0
+   },
+   "SO DAK RS": {
+    "n_record": 10.0,
+    "t_record": 0.7,
+    "cis_record": 75.84,
+    "n_sequel": 9.0,
+    "mean_sequel_bp": -111.36,
+    "p_naive": 0.758,
+    "p_pred": 0.5381,
+    "y": 0.0
+   },
+   "CalSTRS": {
+    "n_record": 10.0,
+    "t_record": 0.69,
+    "cis_record": 75.4,
+    "n_sequel": 17.0,
+    "mean_sequel_bp": 13.97,
+    "p_naive": 0.7549,
+    "p_pred": 0.6191,
+    "y": 1.0
+   },
+   "LAFPP": {
+    "n_record": 10.0,
+    "t_record": 0.63,
+    "cis_record": 73.69,
+    "n_sequel": 18.0,
+    "mean_sequel_bp": -72.25,
+    "p_naive": 0.7357,
+    "p_pred": 0.5598,
+    "y": 0.0
+   },
+   "SBCERA": {
+    "n_record": 10.0,
+    "t_record": 0.54,
+    "cis_record": 70.5,
+    "n_sequel": 4.0,
+    "mean_sequel_bp": 159.08,
+    "p_naive": 0.7054,
+    "p_pred": 0.5105,
+    "y": 1.0
+   },
+   "NYSTRS": {
+    "n_record": 10.0,
+    "t_record": 0.51,
+    "cis_record": 69.65,
+    "n_sequel": 11.0,
+    "mean_sequel_bp": -35.52,
+    "p_naive": 0.695,
+    "p_pred": 0.5834,
+    "y": 0.0
+   },
+   "COAERS": {
+    "n_record": 10.0,
+    "t_record": 0.5,
+    "cis_record": 69.25,
+    "n_sequel": 3.0,
+    "mean_sequel_bp": -52.39,
+    "p_naive": 0.6915,
+    "p_pred": 0.5433,
+    "y": 0.0
+   },
+   "NC TERS": {
+    "n_record": 10.0,
+    "t_record": 0.44,
+    "cis_record": 66.98,
+    "n_sequel": 6.0,
+    "mean_sequel_bp": -15.41,
+    "p_naive": 0.67,
+    "p_pred": 0.5795,
+    "y": 0.0
+   },
+   "MN SBI": {
+    "n_record": 10.0,
+    "t_record": 0.39,
+    "cis_record": 65.35,
+    "n_sequel": 9.0,
+    "mean_sequel_bp": 29.56,
+    "p_naive": 0.6517,
+    "p_pred": 0.5836,
+    "y": 1.0
+   },
+   "TX TRS": {
+    "n_record": 10.0,
+    "t_record": 0.36,
+    "cis_record": 64.19,
+    "n_sequel": 11.0,
+    "mean_sequel_bp": 84.15,
+    "p_naive": 0.6406,
+    "p_pred": 0.5218,
+    "y": 1.0
+   },
+   "NYCERS": {
+    "n_record": 10.0,
+    "t_record": 0.33,
+    "cis_record": 63.1,
+    "n_sequel": 11.0,
+    "mean_sequel_bp": -41.92,
+    "p_naive": 0.6293,
+    "p_pred": 0.5661,
+    "y": 0.0
+   },
+   "TNCRS": {
+    "n_record": 10.0,
+    "t_record": 0.26,
+    "cis_record": 60.11,
+    "n_sequel": 10.0,
+    "mean_sequel_bp": 9.49,
+    "p_naive": 0.6026,
+    "p_pred": 0.5469,
+    "y": 1.0
+   },
+   "IL IMRF": {
+    "n_record": 10.0,
+    "t_record": 0.18,
+    "cis_record": 57.22,
+    "n_sequel": 3.0,
+    "mean_sequel_bp": -154.76,
+    "p_naive": 0.5714,
+    "p_pred": 0.5195,
+    "y": 0.0
+   },
+   "DCRB": {
+    "n_record": 10.0,
+    "t_record": 0.17,
+    "cis_record": 56.83,
+    "n_sequel": 10.0,
+    "mean_sequel_bp": 46.18,
+    "p_naive": 0.5675,
+    "p_pred": 0.5165,
+    "y": 1.0
+   },
+   "LACERA": {
+    "n_record": 10.0,
+    "t_record": 0.14,
+    "cis_record": 55.38,
+    "n_sequel": 14.0,
+    "mean_sequel_bp": 25.07,
+    "p_naive": 0.5557,
+    "p_pred": 0.52,
+    "y": 1.0
+   },
+   "MISSP PERS": {
+    "n_record": 10.0,
+    "t_record": 0.04,
+    "cis_record": 51.57,
+    "n_sequel": 11.0,
+    "mean_sequel_bp": -33.37,
+    "p_naive": 0.516,
+    "p_pred": 0.5057,
+    "y": 0.0
+   },
+   "NJ PERS": {
+    "n_record": 10.0,
+    "t_record": 0.03,
+    "cis_record": 51.05,
+    "n_sequel": 14.0,
+    "mean_sequel_bp": 2.26,
+    "p_naive": 0.512,
+    "p_pred": 0.505,
+    "y": 1.0
+   },
+   "OCERS": {
+    "n_record": 10.0,
+    "t_record": 0.02,
+    "cis_record": 50.94,
+    "n_sequel": 17.0,
+    "mean_sequel_bp": 5.8,
+    "p_naive": 0.508,
+    "p_pred": 0.5042,
+    "y": 1.0
+   },
+   "Maine PERS": {
+    "n_record": 10.0,
+    "t_record": -0.09,
+    "cis_record": 46.59,
+    "n_sequel": 9.0,
+    "mean_sequel_bp": 42.0,
+    "p_naive": 0.4641,
+    "p_pred": 0.4783,
+    "y": 1.0
+   },
+   "OH STRS": {
+    "n_record": 10.0,
+    "t_record": -0.22,
+    "cis_record": 41.39,
+    "n_sequel": 9.0,
+    "mean_sequel_bp": 38.29,
+    "p_naive": 0.4129,
+    "p_pred": 0.4477,
+    "y": 1.0
+   },
+   "VCERA": {
+    "n_record": 10.0,
+    "t_record": -0.3,
+    "cis_record": 38.04,
+    "n_sequel": 10.0,
+    "mean_sequel_bp": -41.18,
+    "p_naive": 0.3821,
+    "p_pred": 0.4559,
+    "y": 0.0
+   },
+   "MDSRA": {
+    "n_record": 10.0,
+    "t_record": -0.52,
+    "cis_record": 30.21,
+    "n_sequel": 13.0,
+    "mean_sequel_bp": 60.68,
+    "p_naive": 0.3015,
+    "p_pred": 0.3866,
+    "y": 1.0
+   },
+   "OR PERS": {
+    "n_record": 10.0,
+    "t_record": -0.54,
+    "cis_record": 29.55,
+    "n_sequel": 8.0,
+    "mean_sequel_bp": -13.21,
+    "p_naive": 0.2946,
+    "p_pred": 0.4453,
+    "y": 0.0
+   },
+   "CT TRS": {
+    "n_record": 10.0,
+    "t_record": -0.67,
+    "cis_record": 25.06,
+    "n_sequel": 6.0,
+    "mean_sequel_bp": -10.01,
+    "p_naive": 0.2514,
+    "p_pred": 0.3692,
+    "y": 0.0
+   },
+   "Houston POPS": {
+    "n_record": 10.0,
+    "t_record": -0.86,
+    "cis_record": 19.62,
+    "n_sequel": 6.0,
+    "mean_sequel_bp": 17.98,
+    "p_naive": 0.1949,
+    "p_pred": 0.4046,
+    "y": 1.0
+   },
+   "UT RS": {
+    "n_record": 10.0,
+    "t_record": -0.95,
+    "cis_record": 17.13,
+    "n_sequel": 11.0,
+    "mean_sequel_bp": -33.21,
+    "p_naive": 0.1711,
+    "p_pred": 0.319,
+    "y": 0.0
+   },
+   "CalPERS": {
+    "n_record": 10.0,
+    "t_record": -1.04,
+    "cis_record": 14.94,
+    "n_sequel": 9.0,
+    "mean_sequel_bp": 15.18,
+    "p_naive": 0.1492,
+    "p_pred": 0.4318,
+    "y": 1.0
+   },
+   "IL TRS": {
+    "n_record": 10.0,
+    "t_record": -1.12,
+    "cis_record": 13.08,
+    "n_sequel": 5.0,
+    "mean_sequel_bp": 136.9,
+    "p_naive": 0.1314,
+    "p_pred": 0.3874,
+    "y": 1.0
+   },
+   "Iowa PERS": {
+    "n_record": 10.0,
+    "t_record": -1.32,
+    "cis_record": 9.28,
+    "n_sequel": 6.0,
+    "mean_sequel_bp": 17.27,
+    "p_naive": 0.0934,
+    "p_pred": 0.27,
+    "y": 1.0
+   },
+   "MICH PERS": {
+    "n_record": 10.0,
+    "t_record": -1.57,
+    "cis_record": 5.85,
+    "n_sequel": 5.0,
+    "mean_sequel_bp": 45.12,
+    "p_naive": 0.0582,
+    "p_pred": 0.3303,
+    "y": 1.0
+   },
+   "DAL F&P": {
+    "n_record": 10.0,
+    "t_record": -1.69,
+    "cis_record": 4.57,
+    "n_sequel": 3.0,
+    "mean_sequel_bp": -384.41,
+    "p_naive": 0.0455,
+    "p_pred": 0.4818,
+    "y": 0.0
+   },
+   "NYC TRS": {
+    "n_record": 10.0,
+    "t_record": -1.82,
+    "cis_record": 3.41,
+    "n_sequel": 6.0,
+    "mean_sequel_bp": -11.49,
+    "p_naive": 0.0344,
+    "p_pred": 0.1538,
+    "y": 0.0
+   }
+  }
+ },
+ "calibration_clean": {
+  "programmes": 42,
+  "tau_record_bp": 53.8,
+  "base_rate_positive_sequel": 0.643,
+  "brier": {
+   "naive_cis": 0.223,
+   "predictive": 0.214,
+   "base_rate": 0.23,
+   "coin": 0.25
+  },
+  "log_score": {
+   "naive_cis": -0.73,
+   "predictive": -0.627,
+   "base_rate": -0.652
+  },
+  "terciles_p_naive": {
+   "low": {
+    "n": 14,
+    "forecast": 0.322,
+    "realised": 0.571,
+    "sequel_bp": -19.878
+   },
+   "mid": {
+    "n": 14,
+    "forecast": 0.689,
+    "realised": 0.429,
+    "sequel_bp": -14.34
+   },
+   "high": {
+    "n": 14,
+    "forecast": 0.95,
+    "realised": 0.929,
+    "sequel_bp": 73.261
+   }
+  },
+  "terciles_p_pred": {
+   "low": {
+    "n": 14,
+    "forecast": 0.425,
+    "realised": 0.571,
+    "sequel_bp": -10.306
+   },
+   "mid": {
+    "n": 14,
+    "forecast": 0.56,
+    "realised": 0.5,
+    "sequel_bp": -2.748
+   },
+   "high": {
+    "n": 14,
+    "forecast": 0.795,
+    "realised": 0.857,
+    "sequel_bp": 52.096
+   }
+  },
+  "group_at_or_above_90": {
+   "n": 12,
+   "naive": 0.962,
+   "predictive": 0.801,
+   "realised": 0.917
+  },
+  "group_below_50": {
+   "n": 9,
+   "naive": 0.205,
+   "predictive": 0.379,
+   "realised": 0.444
+  },
+  "per_plan": {
+   "FL SBA": {
+    "n_record": 10.0,
+    "t_record": 5.86,
+    "cis_record": 100.0,
+    "n_sequel": 5.0,
+    "mean_sequel_bp": 25.69,
+    "p_naive": 1.0,
+    "p_pred": 0.9994,
+    "y": 1.0
+   },
+   "NYSLRS": {
+    "n_record": 10.0,
+    "t_record": 5.46,
+    "cis_record": 100.0,
+    "n_sequel": 6.0,
+    "mean_sequel_bp": 27.56,
+    "p_naive": 1.0,
+    "p_pred": 0.9966,
+    "y": 1.0
+   },
+   "WV ERS": {
+    "n_record": 10.0,
+    "t_record": 3.1,
+    "cis_record": 99.9,
+    "n_sequel": 7.0,
+    "mean_sequel_bp": 189.9,
+    "p_naive": 0.999,
+    "p_pred": 0.8335,
+    "y": 1.0
+   },
+   "AZSRS": {
+    "n_record": 10.0,
+    "t_record": 3.08,
+    "cis_record": 99.9,
+    "n_sequel": 6.0,
+    "mean_sequel_bp": -38.88,
+    "p_naive": 0.999,
+    "p_pred": 0.9539,
+    "y": 0.0
+   },
+   "MONT COUNTY ERS": {
+    "n_record": 10.0,
+    "t_record": 2.12,
+    "cis_record": 98.31,
+    "n_sequel": 8.0,
+    "mean_sequel_bp": 52.4,
+    "p_naive": 0.983,
+    "p_pred": 0.8997,
+    "y": 1.0
+   },
+   "MASSPRIM": {
+    "n_record": 10.0,
+    "t_record": 2.04,
+    "cis_record": 97.91,
+    "n_sequel": 5.0,
+    "mean_sequel_bp": 214.5,
+    "p_naive": 0.9793,
+    "p_pred": 0.8091,
+    "y": 1.0
+   },
+   "KPERS": {
+    "n_record": 10.0,
+    "t_record": 1.76,
+    "cis_record": 96.06,
+    "n_sequel": 25.0,
+    "mean_sequel_bp": 12.01,
+    "p_naive": 0.9608,
+    "p_pred": 0.7123,
+    "y": 1.0
+   },
+   "MIZZOU PERS": {
+    "n_record": 10.0,
+    "t_record": 1.6,
+    "cis_record": 94.5,
+    "n_sequel": 3.0,
+    "mean_sequel_bp": 68.09,
+    "p_naive": 0.9452,
+    "p_pred": 0.6634,
+    "y": 1.0
+   },
+   "SCRSIC": {
+    "n_record": 10.0,
+    "t_record": 1.54,
+    "cis_record": 93.84,
+    "n_sequel": 9.0,
+    "mean_sequel_bp": 96.84,
+    "p_naive": 0.9382,
+    "p_pred": 0.7751,
+    "y": 1.0
+   },
+   "NVPERS": {
+    "n_record": 10.0,
+    "t_record": 1.39,
+    "cis_record": 91.72,
+    "n_sequel": 11.0,
+    "mean_sequel_bp": 8.78,
+    "p_naive": 0.9177,
+    "p_pred": 0.8135,
+    "y": 1.0
+   },
+   "M PERS": {
+    "n_record": 10.0,
+    "t_record": 1.36,
+    "cis_record": 91.34,
+    "n_sequel": 3.0,
+    "mean_sequel_bp": 165.1,
+    "p_naive": 0.9131,
+    "p_pred": 0.5512,
+    "y": 1.0
+   },
+   "TX ERS": {
+    "n_record": 10.0,
+    "t_record": 1.33,
+    "cis_record": 90.86,
+    "n_sequel": 3.0,
+    "mean_sequel_bp": 31.55,
+    "p_naive": 0.9082,
+    "p_pred": 0.6078,
+    "y": 1.0
+   },
+   "VRS": {
+    "n_record": 10.0,
+    "t_record": 1.23,
+    "cis_record": 89.16,
+    "n_sequel": 11.0,
+    "mean_sequel_bp": 71.89,
+    "p_naive": 0.8907,
+    "p_pred": 0.7626,
+    "y": 1.0
+   },
+   "PA PSERS": {
+    "n_record": 10.0,
+    "t_record": 1.12,
+    "cis_record": 86.93,
+    "n_sequel": 12.0,
+    "mean_sequel_bp": 100.22,
+    "p_naive": 0.8686,
+    "p_pred": 0.5875,
+    "y": 1.0
+   },
+   "NYC BERS": {
+    "n_record": 10.0,
+    "t_record": 0.8,
+    "cis_record": 78.95,
+    "n_sequel": 5.0,
+    "mean_sequel_bp": -69.02,
+    "p_naive": 0.7881,
+    "p_pred": 0.6351,
+    "y": 0.0
+   },
+   "SO DAK RS": {
+    "n_record": 10.0,
+    "t_record": 0.7,
+    "cis_record": 75.84,
+    "n_sequel": 9.0,
+    "mean_sequel_bp": -111.36,
+    "p_naive": 0.758,
+    "p_pred": 0.5423,
+    "y": 0.0
+   },
+   "CalSTRS": {
+    "n_record": 10.0,
+    "t_record": 0.69,
+    "cis_record": 75.4,
+    "n_sequel": 17.0,
+    "mean_sequel_bp": 13.97,
+    "p_naive": 0.7549,
+    "p_pred": 0.6258,
+    "y": 1.0
+   },
+   "SWIB": {
+    "n_record": 10.0,
+    "t_record": 0.67,
+    "cis_record": 74.86,
+    "n_sequel": 8.0,
+    "mean_sequel_bp": 55.62,
+    "p_naive": 0.7486,
+    "p_pred": 0.644,
+    "y": 1.0
+   },
+   "LAFPP": {
+    "n_record": 10.0,
+    "t_record": 0.63,
+    "cis_record": 73.69,
+    "n_sequel": 18.0,
+    "mean_sequel_bp": -72.25,
+    "p_naive": 0.7357,
+    "p_pred": 0.5654,
+    "y": 0.0
+   },
+   "SBCERA": {
+    "n_record": 10.0,
+    "t_record": 0.54,
+    "cis_record": 70.5,
+    "n_sequel": 4.0,
+    "mean_sequel_bp": 159.08,
+    "p_naive": 0.7054,
+    "p_pred": 0.5118,
+    "y": 1.0
+   },
+   "NYSTRS": {
+    "n_record": 10.0,
+    "t_record": 0.51,
+    "cis_record": 69.65,
+    "n_sequel": 11.0,
+    "mean_sequel_bp": -35.52,
+    "p_naive": 0.695,
+    "p_pred": 0.588,
+    "y": 0.0
+   },
+   "COAERS": {
+    "n_record": 10.0,
+    "t_record": 0.5,
+    "cis_record": 69.25,
+    "n_sequel": 3.0,
+    "mean_sequel_bp": -52.39,
+    "p_naive": 0.6915,
+    "p_pred": 0.5465,
+    "y": 0.0
+   },
+   "NC TERS": {
+    "n_record": 10.0,
+    "t_record": 0.44,
+    "cis_record": 66.98,
+    "n_sequel": 6.0,
+    "mean_sequel_bp": -15.41,
+    "p_naive": 0.67,
+    "p_pred": 0.5821,
+    "y": 0.0
+   },
+   "MN SBI": {
+    "n_record": 10.0,
+    "t_record": 0.39,
+    "cis_record": 65.35,
+    "n_sequel": 9.0,
+    "mean_sequel_bp": 29.56,
+    "p_naive": 0.6517,
+    "p_pred": 0.5859,
+    "y": 1.0
+   },
+   "TX TRS": {
+    "n_record": 10.0,
+    "t_record": 0.36,
+    "cis_record": 64.19,
+    "n_sequel": 11.0,
+    "mean_sequel_bp": 84.15,
+    "p_naive": 0.6406,
+    "p_pred": 0.5241,
+    "y": 1.0
+   },
+   "NYCERS": {
+    "n_record": 10.0,
+    "t_record": 0.33,
+    "cis_record": 63.1,
+    "n_sequel": 11.0,
+    "mean_sequel_bp": -41.92,
+    "p_naive": 0.6293,
+    "p_pred": 0.5686,
+    "y": 0.0
+   },
+   "TNCRS": {
+    "n_record": 10.0,
+    "t_record": 0.26,
+    "cis_record": 60.11,
+    "n_sequel": 10.0,
+    "mean_sequel_bp": 9.49,
+    "p_naive": 0.6026,
+    "p_pred": 0.5491,
+    "y": 1.0
+   },
+   "IL IMRF": {
+    "n_record": 10.0,
+    "t_record": 0.18,
+    "cis_record": 57.22,
+    "n_sequel": 3.0,
+    "mean_sequel_bp": -154.76,
+    "p_naive": 0.5714,
+    "p_pred": 0.5206,
+    "y": 0.0
+   },
+   "DCRB": {
+    "n_record": 10.0,
+    "t_record": 0.17,
+    "cis_record": 56.83,
+    "n_sequel": 10.0,
+    "mean_sequel_bp": 46.18,
+    "p_naive": 0.5675,
+    "p_pred": 0.518,
+    "y": 1.0
+   },
+   "LACERA": {
+    "n_record": 10.0,
+    "t_record": 0.14,
+    "cis_record": 55.38,
+    "n_sequel": 14.0,
+    "mean_sequel_bp": 25.07,
+    "p_naive": 0.5557,
+    "p_pred": 0.5214,
+    "y": 1.0
+   },
+   "MISSP PERS": {
+    "n_record": 10.0,
+    "t_record": 0.04,
+    "cis_record": 51.57,
+    "n_sequel": 11.0,
+    "mean_sequel_bp": -33.37,
+    "p_naive": 0.516,
+    "p_pred": 0.5061,
+    "y": 0.0
+   },
+   "NJ PERS": {
+    "n_record": 10.0,
+    "t_record": 0.03,
+    "cis_record": 51.05,
+    "n_sequel": 14.0,
+    "mean_sequel_bp": 2.26,
+    "p_naive": 0.512,
+    "p_pred": 0.5053,
+    "y": 1.0
+   },
+   "OCERS": {
+    "n_record": 10.0,
+    "t_record": 0.02,
+    "cis_record": 50.94,
+    "n_sequel": 17.0,
+    "mean_sequel_bp": 5.8,
+    "p_naive": 0.508,
+    "p_pred": 0.5044,
+    "y": 1.0
+   },
+   "OH STRS": {
+    "n_record": 10.0,
+    "t_record": -0.22,
+    "cis_record": 41.39,
+    "n_sequel": 9.0,
+    "mean_sequel_bp": 38.29,
+    "p_naive": 0.4129,
+    "p_pred": 0.4468,
+    "y": 1.0
+   },
+   "VCERA": {
+    "n_record": 10.0,
+    "t_record": -0.3,
+    "cis_record": 38.04,
+    "n_sequel": 10.0,
+    "mean_sequel_bp": -41.18,
+    "p_naive": 0.3821,
+    "p_pred": 0.4532,
+    "y": 0.0
+   },
+   "MDSRA": {
+    "n_record": 10.0,
+    "t_record": -0.52,
+    "cis_record": 30.21,
+    "n_sequel": 13.0,
+    "mean_sequel_bp": 60.68,
+    "p_naive": 0.3015,
+    "p_pred": 0.3829,
+    "y": 1.0
+   },
+   "OR PERS": {
+    "n_record": 10.0,
+    "t_record": -0.54,
+    "cis_record": 29.55,
+    "n_sequel": 8.0,
+    "mean_sequel_bp": -13.21,
+    "p_naive": 0.2946,
+    "p_pred": 0.4408,
+    "y": 0.0
+   },
+   "UT RS": {
+    "n_record": 10.0,
+    "t_record": -0.95,
+    "cis_record": 17.13,
+    "n_sequel": 11.0,
+    "mean_sequel_bp": -33.21,
+    "p_naive": 0.1711,
+    "p_pred": 0.3122,
+    "y": 0.0
+   },
+   "CalPERS": {
+    "n_record": 10.0,
+    "t_record": -1.04,
+    "cis_record": 14.94,
+    "n_sequel": 9.0,
+    "mean_sequel_bp": 15.18,
+    "p_naive": 0.1492,
+    "p_pred": 0.4247,
+    "y": 1.0
+   },
+   "MICH PERS": {
+    "n_record": 10.0,
+    "t_record": -1.57,
+    "cis_record": 5.85,
+    "n_sequel": 5.0,
+    "mean_sequel_bp": 45.12,
+    "p_naive": 0.0582,
+    "p_pred": 0.3194,
+    "y": 1.0
+   },
+   "DAL F&P": {
+    "n_record": 10.0,
+    "t_record": -1.69,
+    "cis_record": 4.57,
+    "n_sequel": 3.0,
+    "mean_sequel_bp": -384.41,
+    "p_naive": 0.0455,
+    "p_pred": 0.4793,
+    "y": 0.0
+   },
+   "NYC TRS": {
+    "n_record": 10.0,
+    "t_record": -1.82,
+    "cis_record": 3.41,
+    "n_sequel": 6.0,
+    "mean_sequel_bp": -11.49,
+    "p_naive": 0.0344,
+    "p_pred": 0.1512,
+    "y": 0.0
+   }
+  }
+ },
+ "horizon_table_median_plan": [
+  {
+   "n_record": 16,
+   "te_pct": 1.54,
+   "cis": 0.9,
+   "tau_pct": 0.56,
+   "posterior_skill": 0.855,
+   "ahead_1y": 0.584,
+   "ahead_5y": 0.671,
+   "ahead_10y": 0.718,
+   "ahead_20y": 0.763
+  },
+  {
+   "n_record": 16,
+   "te_pct": 1.54,
+   "cis": 0.9,
+   "tau_pct": 0.3,
+   "posterior_skill": 0.785,
+   "ahead_1y": 0.548,
+   "ahead_5y": 0.601,
+   "ahead_10y": 0.635,
+   "ahead_20y": 0.672
+  },
+  {
+   "n_record": 16,
+   "te_pct": 1.54,
+   "cis": 0.99,
+   "tau_pct": 0.56,
+   "posterior_skill": 0.972,
+   "ahead_1y": 0.651,
+   "ahead_5y": 0.789,
+   "ahead_10y": 0.852,
+   "ahead_20y": 0.903
+  },
+  {
+   "n_record": 16,
+   "te_pct": 1.54,
+   "cis": 0.99,
+   "tau_pct": 0.3,
+   "posterior_skill": 0.924,
+   "ahead_1y": 0.586,
+   "ahead_5y": 0.679,
+   "ahead_10y": 0.734,
+   "ahead_20y": 0.791
+  },
+  {
+   "n_record": 10,
+   "te_pct": 1.54,
+   "cis": 0.9,
+   "tau_pct": 0.56,
+   "posterior_skill": 0.833,
+   "ahead_1y": 0.589,
+   "ahead_5y": 0.676,
+   "ahead_10y": 0.72,
+   "ahead_20y": 0.76
+  },
+  {
+   "n_record": 10,
+   "te_pct": 1.54,
+   "cis": 0.9,
+   "tau_pct": 0.3,
+   "posterior_skill": 0.749,
+   "ahead_1y": 0.544,
+   "ahead_5y": 0.592,
+   "ahead_10y": 0.623,
+   "ahead_20y": 0.656
+  },
+  {
+   "n_record": 10,
+   "te_pct": 1.54,
+   "cis": 0.99,
+   "tau_pct": 0.56,
+   "posterior_skill": 0.96,
+   "ahead_1y": 0.658,
+   "ahead_5y": 0.796,
+   "ahead_10y": 0.855,
+   "ahead_20y": 0.9
+  },
+  {
+   "n_record": 10,
+   "te_pct": 1.54,
+   "cis": 0.99,
+   "tau_pct": 0.3,
+   "posterior_skill": 0.889,
+   "ahead_1y": 0.579,
+   "ahead_5y": 0.664,
+   "ahead_10y": 0.715,
+   "ahead_20y": 0.766
+  }
+ ],
+ "effective_tests": {
+  "42": {
+   "programmes": 42,
+   "null_count_mean": 4.58,
+   "null_count_sd": 4.5,
+   "binomial_sd": 1.94,
+   "variance_ratio": 5.35,
+   "m_eff": 7.8,
+   "null_count_95": 14.0
+  },
+  "50": {
+   "programmes": 50,
+   "null_count_mean": 5.46,
+   "null_count_sd": 4.88,
+   "binomial_sd": 2.12,
+   "variance_ratio": 5.3,
+   "m_eff": 9.4,
+   "null_count_95": 16.0
+  }
+ }
+}
