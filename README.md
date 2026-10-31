@@ -57,6 +57,8 @@ scripts/run_timing_models.py        Jensen, Treynor-Mazuy and Henriksson-Merton 
                                     bootstraps with min-p adjustment (paper Section 4.9; results/timing_models_*.json/.csv)
 scripts/make_corrected_exhibits.py  corrected versions of the article's Table 1, Appendices I-III and Figures 1, 2, 4, 5
                                     for the journal's online update (arithmetic numerator; model-consistent alongside)
+paper/make_attribution_table.py     Table C.3: every programme's excess return split into beta tilt and
+                                    selection, with the confidence attaching to each part
 scripts/run_predictive_calibration.py  confidence read as a probability of outperforming: the predictive probability
                                     over the next H years, its calibration on the record/sequel split (Brier and log
                                     scores against the base rate), and the effective number of independent tests
@@ -102,8 +104,9 @@ New York against the other column). The article's two extreme results — a plan
 differently) into the same tidy panel; `scripts/build_extended_panel.py` appends them to the 42
 programmes, with the Wisconsin Core Fund series replacing the first workbook's SWIB sheet (wrong before
 2014) and Maine PERS's fiscal 2020 dropped (benchmark recorded as 0.0): 50 programmes, 927 plan-years.
-`results/summary_extended.json` holds every statistic on it. The returns of the nine are not yet
-distributed here; the loader and results are.
+`results/summary_extended.json` holds every statistic on it. The panel itself is
+`data/panel_returns_extended.csv`, redistributed with the author's permission (provenance and credit in
+`data/DATA.md`); every script that takes a panel runs on it.
 
 `scripts/run_framework_tests.py` asks what a confidence value is worth as a forecast. Each programme is
 split at its tenth observed year (the framework's first look) into a record and a sequel: on the 50

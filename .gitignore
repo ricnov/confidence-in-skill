@@ -13,5 +13,4 @@ paper/*.out
 # the manuscript is added on submission; the corrections file goes to the journal, not here
 paper/cis_paper.*
 errata/
-data/panel_returns_extended.csv
 data/panel_returns_extra.csv
