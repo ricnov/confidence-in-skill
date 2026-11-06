@@ -116,17 +116,20 @@ for k in looks:
     path_paper.append(stats.norm.cdf(np.sqrt(k) * gap / te))
 gap_T, sd_T = d.mean(), d.std(ddof=1)
 ref = [stats.norm.cdf(np.sqrt(k) * gap_T / sd_T) for k in looks]
+from cis.anytime import e_process, confidence_path  # noqa: E402
+anytime = confidence_path(e_process(d)[0])[9:]
 xs = yrs[9:]
 fig, ax = plt.subplots(figsize=(6.6, 2.4))
 ax.axhline(0.5, color=GRAY, linewidth=1)
 ax.plot(xs, path_paper, color=LIGHT, linewidth=1.6, label="article's numerator (geometric returns, drag subtracted)")
 ax.plot(xs, path_star, color=BLUE, linewidth=2, label="model-consistent $t$-statistic")
 ax.plot(xs, ref, color=INK, linewidth=1.2, linestyle="--", label="constant-gap reference: terminal gap and tracking error held fixed")
-ax.set_ylim(0.3, 1.0); ax.set_yticks([0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]); ax.set_yticklabels(["40%", "50", "60", "70", "80", "90", "100"])
+ax.plot(xs, anytime, color=INK, linewidth=1.2, linestyle=":", label="anytime-valid confidence")
+ax.set_ylim(0.0, 1.0); ax.set_yticks([0.0, 0.2, 0.4, 0.5, 0.6, 0.8, 1.0]); ax.set_yticklabels(["0%", "20", "40", "50", "60", "80", "100"])
 ax.set_xlabel("fiscal year at which the expanding window ends (first look after ten years)")
 ax.set_ylabel("confidence in skill")
 ax.set_xticks([2008, 2011, 2014, 2017, 2020, 2023, 2025])
-ax.legend(frameon=False, fontsize=7.5, loc="upper left")
+ax.legend(frameon=False, fontsize=7.5, loc="lower right")
 fig.tight_layout()
 fig.savefig(ROOT / "paper" / "fig_path.pdf"); fig.savefig(ROOT / "paper" / "fig_path.png", dpi=200)
 print("fig 4: CalSTRS terminal: paper %.3f star %.3f ref %.3f; 2023: paper %.3f star %.3f" % (
