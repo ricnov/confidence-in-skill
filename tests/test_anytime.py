@@ -36,3 +36,15 @@ def test_confidence_is_monotone_and_bounded():
     C = C[~np.isnan(C)]
     assert np.all(np.diff(C) >= -1e-12) and C.min() >= 0 and C.max() < 1
     assert np.isnan(naive_path(x)[0]) and naive_path(x)[-1] == stats.norm.cdf(np.sqrt(20) * x.mean() / x.std(ddof=1))
+
+
+def test_closed_form_matches_quadrature():
+    """The closed form (Student-t cdf) agrees with the chi quadrature to the quadrature's accuracy."""
+    from cis.anytime import e_process_quadrature
+    rng = np.random.default_rng(5)
+    for a in (0.25, 0.5, 1.0, (0.25, 0.5, 1.0)):
+        x = rng.normal(0.4, 1.3, 30)
+        one, two = e_process(x, a=a)
+        q1, q2 = e_process_quadrature(x, a=a)
+        assert np.nanmax(np.abs(one / q1 - 1)) < 1e-5
+        assert np.nanmax(np.abs(two / q2 - 1)) < 1e-10

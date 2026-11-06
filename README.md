@@ -145,7 +145,9 @@ data: `python scripts/run_timing_models.py data/panel_returns.csv --clean`.
 scale-free, so under no skill the law of the record's direction u_n = d/||d|| is free of σ; the likelihood
 ratio of u_n under an information ratio δ = μ/σ against δ = 0, averaged over a half-normal prior on δ, is a
 nonnegative martingale with M_0 = 1 (Lai 1976), and Ville's inequality bounds the probability that it ever
-exceeds 1/α by α. The anytime-valid confidence C_n = 1 − 1/max_{k≤n} M_k can be read every year: acting the
+exceeds 1/α by α. The one-sided mixture has a closed form, M_n = 2(1+na²)^{-1/2}(1−κ²)^{-n/2} F_{t_n}(κ√n/√(1−κ²))
+with κ = aB_n/(√A_n √(1+na²)) and F_{t_n} the Student-t distribution function (the chi expectation of the
+likelihood ratio reduces to it); the quadrature version is kept as a check. The anytime-valid confidence C_n = 1 − 1/max_{k≤n} M_k can be read every year: acting the
 first time it reaches 90% carries at most a 10% chance of ever acting on a plan with no skill. With the
 equal-weight mixture of prior scales 0.25, 0.5 and 1, the framework's path read from the tenth year crosses
 90% at some look for 18 of the 50 programmes; the anytime-valid confidence reaches 90% for eight, where the
