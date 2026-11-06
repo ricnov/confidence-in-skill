@@ -63,6 +63,12 @@ scripts/run_anytime_valid.py        the anytime-valid confidence in skill (src/c
                                     e-process of the record's direction, a martingale under no skill, read every
                                     year with its error rate controlled; null simulation, power, year-cluster null
                                     of the count of crossings (results/anytime_valid_{extended,clean}.json)
+scripts/run_ebh.py                  from one plan to the panel: the e-BH procedure on the plans' e-processes year by
+                                    year (false-discovery control at any look under arbitrary within-year dependence),
+                                    the average e-value as a global test (results/ebh_{extended,clean}.json)
+scripts/run_time_varying_skill.py   how fast can skill vary: a pooled local-level (random-walk skill) model, the
+                                    profile likelihood over the signal-to-noise ratio, the year-cluster null of the
+                                    boundary LR statistic, and the 95% bound on the year-to-year change in skill
 scripts/run_predictive_calibration.py  confidence read as a probability of outperforming: the predictive probability
                                     over the next H years, its calibration on the record/sequel split (Brier and log
                                     scores against the base rate), and the effective number of independent tests
@@ -145,6 +151,22 @@ equal-weight mixture of prior scales 0.25, 0.5 and 1, the framework's path read 
 90% at some look for 18 of the 50 programmes; the anytime-valid confidence reaches 90% for eight, where the
 year-cluster null expects about one. `paper/make_anytime_table.py` writes the table; `tests/test_anytime.py`
 checks scale invariance and the unit-expectation identity.
+
+`scripts/run_ebh.py` takes the e-processes to the panel. Each M_{i,t} is an e-value at any stopping time, and
+the e-BH procedure (Wang and Ramdas 2022; reject the k* largest e-values with k* = max{k : E_(k) ≥ m/(kα)})
+controls the false discovery rate under arbitrary dependence; applied every year it keeps that control at
+any stopping time when, given the current year, the plans' returns are independent of the past (Wang,
+Dandapanthula and Ramdas 2025) — the exchangeable-years assumption of the bootstrap, with within-year
+dependence unrestricted. On the 50 programmes the discovery set at 5% is SWIB alone, from 2024 (from 2023
+at 10%); on the article's 42, no plan; the average e-value, itself an e-value under arbitrary dependence
+(Vovk and Wang 2021), is 65 at the end of the record and has exceeded 10 since 2022.
+
+`scripts/run_time_varying_skill.py` asks how fast skill could vary. A pooled local-level model (random-walk
+skill plus noise, one signal-to-noise ratio q, year effects removed, diffuse initial level, Kalman filter
+with the noise variance concentrated out) is maximised at q = 0 on both panels; the boundary LR statistic's
+null is simulated by the year-cluster bootstrap; the largest q not rejected at 5% is 0.017, a standard
+deviation of 18 bp for the year-to-year change in a programme's skill at the median tracking error (56 bp
+over ten years).
 
 `scripts/run_predictive_calibration.py` asks what a confidence value is worth to a trustee. Under the
 cross-section's normal prior the probability of being ahead over the next H years is
