@@ -1,11 +1,11 @@
 """Figure 1 of the paper: null distributions of the count above 90% and of the largest t.
 
-    python paper/make_figure.py data/panel_returns.csv [B]      (or the author's workbook .xlsx)
+    python paper/make_figure.py data/panel_returns.csv [B] [--raw]      (or the author's workbook .xlsx)
 
-Runs on data/panel_returns.csv (or the author's workbook). Runs the year-cluster wild bootstrap with the
+Runs on the cleaned panel of 42 programmes (--raw keeps all 47 rows). Runs the year-cluster wild bootstrap with the
 seed used in the paper (B = 50,000, seed 20261011), so the draws are the paper's, and overlays the
-distributions that would obtain if the 47 funds were independent (Student-t draws, each fund's
-own degrees of freedom). Writes paper/fig_null.pdf and paper/fig_null.png.
+distributions that would obtain if the programmes were independent (Student-t draws, each programme's
+own degrees of freedom). Writes paper/fig_null.pdf and paper/fig_null.png in matplotlib's default style.
 """
 import sys
 from pathlib import Path
@@ -16,15 +16,18 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-from cis.panel import load_panel, log_excess_matrix
+from cis.panel import load_panel, clean_panel, log_excess_matrix
 from cis.bootstrap import wild_bootstrap
 
-if len(sys.argv) < 2:
+args = [a for a in sys.argv[1:] if not a.startswith("--")]
+if not args:
     sys.exit(__doc__)
 OUT = Path(__file__).resolve().parent
-B = int(sys.argv[2]) if len(sys.argv) > 2 else 50000
+B = int(args[1]) if len(args) > 1 else 50000
 
-panel, _ = load_panel(sys.argv[1])
+panel, _ = load_panel(args[0])
+if "--raw" not in sys.argv:
+    panel = clean_panel(panel)
 mat = log_excess_matrix(panel)
 boot = wild_bootstrap(mat, B=B, seed=20261011)
 T, t_obs, n_obs = boot["T"], boot["t"], boot["n"]
@@ -40,35 +43,31 @@ obs_count = int((stats.norm.cdf(t_obs) > 0.9).sum())
 obs_max = float(t_obs.max())
 top_fund = boot["funds"][int(np.argmax(t_obs))]
 
-BLUE, GRAY, INK, MUTED = "#2a78d6", "#c9ccd1", "#0b0b0b", "#52514e"
-plt.rcParams.update({"font.family": "serif", "font.size": 9, "axes.edgecolor": MUTED,
-                     "axes.labelcolor": INK, "xtick.color": MUTED, "ytick.color": MUTED,
-                     "axes.spines.top": False, "axes.spines.right": False})
-fig, axes = plt.subplots(1, 2, figsize=(6.6, 2.8))
+plt.rcdefaults()
+fig, axes = plt.subplots(1, 2, figsize=(6.3, 2.7))
 
 ax = axes[0]
 bins = np.arange(-0.5, 36.5, 1)
-ax.hist(counts, bins=bins, density=True, color=GRAY, edgecolor="white", linewidth=0.5, label="year-cluster bootstrap")
+ax.hist(counts, bins=bins, density=True, color="C0", label="year-cluster bootstrap")
 h_ind, _ = np.histogram(counts_ind, bins=bins, density=True)
-ax.step(bins[:-1] + 0.5, h_ind, where="mid", color=MUTED, linewidth=1.2, linestyle="--", label="independent funds")
-ax.axvline(obs_count, color=BLUE, linewidth=2)
-ax.text(obs_count + 0.6, ax.get_ylim()[1] * 0.92, "observed: %d" % obs_count, color=INK, fontsize=8.5, va="top")
-ax.set_xlabel("funds above 90% confidence under the null")
+ax.step(bins[:-1] + 0.5, h_ind, where="mid", color="k", linestyle="--", linewidth=1.0, label="independent")
+ax.axvline(obs_count, color="C3", linewidth=1.5, label="observed: %d" % obs_count)
+ax.set_xlabel("programmes above 90% under the null")
 ax.set_ylabel("probability")
 ax.set_xlim(-0.5, 35.5)
-ax.legend(frameon=False, fontsize=8, loc="center right")
+ax.legend(loc="upper right", fontsize=7.5)
 
 ax = axes[1]
 bins = np.linspace(1.0, 6.0, 51)
-ax.hist(maxt, bins=bins, density=True, color=GRAY, edgecolor="white", linewidth=0.5)
+ax.hist(maxt, bins=bins, density=True, color="C0", label="year-cluster bootstrap")
 h_ind, _ = np.histogram(maxt_ind, bins=bins, density=True)
-ax.step(0.5 * (bins[:-1] + bins[1:]), h_ind, where="mid", color=MUTED, linewidth=1.2, linestyle="--")
-ax.axvline(obs_max, color=BLUE, linewidth=2)
-ax.text(obs_max + 0.08, ax.get_ylim()[1] * 0.92, "%s: %.2f" % (top_fund, obs_max), color=INK, fontsize=8.5, va="top")
-ax.set_xlabel("largest $t$ of the %d funds under the null" % m)
+ax.step(0.5 * (bins[:-1] + bins[1:]), h_ind, where="mid", color="k", linestyle="--", linewidth=1.0, label="independent")
+ax.axvline(obs_max, color="C3", linewidth=1.5, label="observed: %s, %.2f" % (top_fund, obs_max))
+ax.set_xlabel("largest $t$ under the null")
 ax.set_ylabel("density")
 ax.set_xlim(1.0, 6.0)
-fig.tight_layout(w_pad=2.0)
+ax.legend(loc="upper right", fontsize=7.5)
+fig.tight_layout()
 fig.savefig(OUT / "fig_null.pdf")
 fig.savefig(OUT / "fig_null.png", dpi=200)
 print("count 95/99:", np.percentile(counts, [95, 99]), "| max t 95/99:", np.percentile(maxt, [95, 99]).round(2),
