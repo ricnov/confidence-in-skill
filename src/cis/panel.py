@@ -117,7 +117,9 @@ DATA_PROBLEMS = {
     "PA SERS": "duplicates the PA PSERS sheet: identical actual returns in 19 of 22 common years and "
                "identical benchmarks in 20 (the two systems report different returns)",
     "NYSCRF": "the New York State Common Retirement Fund, which is the NYSLRS asset pool: actual returns "
-              "identical to the NYSLRS sheet in all 13 common years, with a different benchmark column",
+              "identical to the NYSLRS sheet in all 13 common years; its benchmark column is the Fund's own "
+              "money-weighted rate of return (ACFR schedule of investment returns, fiscal 2015-2023), not a "
+              "benchmark",
 }
 
 
@@ -127,9 +129,10 @@ def clean_panel(panel: pd.DataFrame, ny_benchmark: str = "NYSLRS") -> pd.DataFra
     Drops LASERS (benchmark is the S&P 500), NJ TPAF and NJDRPB (the New Jersey Common Pension Fund
     appears three times; NJ PERS is kept, whose benchmark agrees with NJ TPAF's in every common year),
     PA SERS (a copy of PA PSERS for 20 of 22 years) and NYSCRF (the same fund as NYSLRS). The New York
-    fund is kept once, under the name NYSLRS, measured against the NYSLRS sheet's benchmark by default;
-    with ny_benchmark="NYSCRF" it is measured instead against the NYSCRF sheet's benchmark over the 13
-    years that sheet covers.
+    fund is kept once, under the name NYSLRS, measured against the NYSLRS sheet's benchmark by default
+    (a column the Fund's reports do not document for 2010-2022); with ny_benchmark="NYSCRF" it is measured
+    instead against the NYSCRF sheet's column over the 13 years that sheet covers, which is the Fund's
+    own money-weighted return, so this option measures the fund against itself.
     """
     out = panel[~panel["fund"].isin(DATA_PROBLEMS)].copy()
     if ny_benchmark == "NYSCRF":

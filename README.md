@@ -101,12 +101,16 @@ for five funds and determines its sign for two.
 `scripts/data_checks.py` compares every sheet's columns with each other and with the S&P 500. Five of the
 47 rows are not independent, correctly benchmarked plans: the **LASERS** benchmark column is the S&P 500
 total return for fiscal 2010–2025 (16 years to the decimal); **NYSCRF** is the same fund as **NYSLRS**
-(identical returns in all 13 common years) under a different benchmark column, against which the fund's
-*t* is 0.15 instead of 4.24; the three **New Jersey** rows are one investment programme; the **PA SERS**
-sheet copies PA PSERS in 20 of 22 years. `cis.panel.clean_panel` reduces the panel to 42 programmes, and
-`scripts/run_everything.py --clean` reproduces every number in the paper on it (`--ny NYSCRF` measures
-New York against the other column). The article's two extreme results — a plan at 0% and a plan at
-100% — are these two benchmark columns.
+(identical returns in all 13 common years) and its "benchmark" column is the Fund's own money-weighted
+rate of return (for fiscal 2015–2023 it equals, to the basis point, the schedule of investment returns in
+the System's Annual Comprehensive Financial Reports; 2024 is the time-weighted return and 2025 the assumed
+rate of return), against which the fund's *t* is 0.15 instead of 4.24; the NYSLRS sheet's benchmark
+column shares those 2023–2025 values and could not be traced to the Fund's reports for 2010–2022; the
+three **New Jersey** rows are one investment programme; the **PA SERS** sheet copies PA PSERS in 20 of 22
+years. `cis.panel.clean_panel` reduces the panel to 42 programmes, and `scripts/run_everything.py --clean`
+reproduces every number in the paper on it (`--ny NYSCRF` measures New York against the money-weighted
+column, a fund against itself). The article's two extreme results — a plan at 0% and a plan at 100% —
+are the S&P 500 column and the untraceable NYSLRS column.
 
 ## Nine further plans (second workbook, October 2026)
 

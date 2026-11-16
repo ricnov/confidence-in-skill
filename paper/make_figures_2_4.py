@@ -58,7 +58,7 @@ c1 = np.concatenate([[0], np.cumsum(d1.values)]); c2 = np.concatenate([[0], np.c
 t_axis = np.concatenate([[common[0] - 1], common])
 ax.axhline(0, color="k", linewidth=0.8)
 ax.plot(t_axis, 100 * c1, "C0-", label="NYSLRS benchmark column")
-ax.plot(t_axis, 100 * c2, "C1--", label="NYSCRF benchmark column")
+ax.plot(t_axis, 100 * c2, "C1--", label="NYSCRF column (money-weighted return)")
 ax.set_xlabel("fiscal year"); ax.set_ylabel("cumulative log excess return, %")
 ax.set_xticks([2013, 2016, 2019, 2022, 2025])
 ax.legend(loc="center right", fontsize=8)
