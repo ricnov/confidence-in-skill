@@ -83,12 +83,20 @@ for lab, fname in (("extended", "framework_tests_extended.json"), ("clean", "fra
     print(lab, json.dumps({k: v for k, v in res.items() if k != "per_plan"}, indent=1))
 
 # ------------------------------------------------------------------ horizon table for a median plan
+# the median tracking error of the extended panel and the two tau values of the framework tests
+# (method of moments on the 50, and without the extremes), in percent
+_ext, _ = load_panel(ROOT / "data" / "panel_returns_extended.csv")
+_d = (np.log1p(_ext["actual"]) - np.log1p(_ext["benchmark"])).groupby(_ext["fund"]).std(ddof=1)
+TE_MEDIAN = round(float(100 * _d.median()), 2)
+_post = json.load(open(ROOT / "results" / "framework_tests_extended.json"))["posterior"]
+TAUS = (round(_post["tau_mom_all"]["tau_bp"] / 100, 2), round(_post["tau_mom_without_extremes"]["tau_bp"] / 100, 2))
+print("horizon table: median tracking error %.2f%%, tau %s" % (TE_MEDIAN, TAUS))
 rows = []
-for n1, te in ((16, 1.54), (10, 1.54)):
+for n1, te in ((16, TE_MEDIAN), (10, TE_MEDIAN)):
     se1 = te / np.sqrt(n1)
     for cis in (0.90, 0.99):
         t = stats.norm.ppf(cis); d = t * se1
-        for tau_ in (0.56, 0.30):
+        for tau_ in TAUS:
             w = tau_ ** 2 / (tau_ ** 2 + se1 ** 2); m = w * d; v = tau_ ** 2 * se1 ** 2 / (tau_ ** 2 + se1 ** 2)
             rows.append(dict(n_record=n1, te_pct=te, cis=cis, tau_pct=tau_, posterior_skill=round(float(stats.norm.cdf(m / np.sqrt(v))), 3),
                              **{"ahead_%dy" % H: round(float(stats.norm.cdf(m / np.sqrt(v + te ** 2 / H))), 3) for H in (1, 5, 10, 20)}))

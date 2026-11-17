@@ -1,0 +1,134 @@
+year,asset_class,policy_weight,benchmark,benchmark_return
+2010,Domestic equity,0.35,Russell 3000,52.44
+2010,International equity,0.16,MSCI ACWI ex US,60.93
+2010,Private equity,0.08,Cambridge Associates US Private Equity,13.46
+2010,Real estate,0.06,NCREIF Property,-16.86
+2010,Absolute return,0.05,HFRX Global Hedge Fund,12.9
+2010,"Bonds, cash and mortgages",0.225,Barclays Capital Aggregate,7.69
+2010,TIPS,0.075,Salomon Smith Barney Inflation Linked,5.95
+2011,Global equity,0.43,MSCI ACWI,14.08
+2011,Private equity,0.1,Cambridge Associates US Private Equity,19.97
+2011,Real estate,0.06,NCREIF Property,13.11
+2011,Absolute return,0.04,HFRX Global Hedge Fund,6.29
+2011,Opportunistic,0.04,none listed; absolute-return benchmark,6.29
+2011,Real assets,0.03,none listed; absolute-return benchmark,6.29
+2011,Bonds and mortgages,0.22,Barclays Capital Aggregate,5.12
+2011,TIPS,0.08,Citigroup Inflation Linked Securities,8.24
+2012,Global equity,0.43,MSCI ACWI,-0.73
+2012,Private equity,0.1,Cambridge Associates US Private Equity,21.07
+2012,Real estate,0.06,NCREIF Property,14.26
+2012,Absolute return,0.04,HFRX Global Hedge Fund,-7.18
+2012,Opportunistic,0.04,none listed; absolute-return benchmark,-7.18
+2012,Real assets,0.03,none listed; absolute-return benchmark,-7.18
+2012,Bonds and mortgages,0.22,Barclays Capital Aggregate,7.71
+2012,TIPS,0.08,Citigroup Inflation Linked Securities,12.58
+2013,Global equity,0.43,MSCI ACWI,10.55
+2013,Private equity,0.1,Cambridge Associates US Private Equity,13.81
+2013,Real estate,0.06,NCREIF Property,10.54
+2013,Absolute return,0.04,HFRX Global Hedge Fund,2.74
+2013,Opportunistic,0.04,none listed; absolute-return benchmark,2.74
+2013,Real assets,0.03,none listed; absolute-return benchmark,2.74
+2013,Bonds and mortgages,0.22,Barclays Capital Aggregate,3.77
+2013,TIPS,0.08,Citigroup Inflation Linked Securities,5.71
+2014,Global equity,0.43,MSCI ACWI,16.55
+2014,Private equity,0.1,Cambridge Associates US Private Equity,20.77
+2014,Real estate,0.06,NCREIF Property,10.99
+2014,Absolute return,0.04,HFRX Global Hedge Fund,5.62
+2014,Opportunistic,0.04,none listed; absolute-return benchmark,5.62
+2014,Real assets,0.03,none listed; absolute-return benchmark,5.62
+2014,Bonds and mortgages,0.22,Barclays Capital Aggregate,-0.1
+2014,TIPS,0.08,Citigroup Inflation Linked Securities,-6.78
+2015,Global equity,0.51,MSCI ACWI,5.42
+2015,Private equity,0.1,Cambridge Associates US Private Equity,11.09
+2015,Real estate,0.08,NCREIF Property,11.8
+2015,Absolute return,0.03,HFRX Global Hedge Fund,-0.21
+2015,Opportunistic,0.03,none listed; absolute-return benchmark,-0.21
+2015,Real assets,0.03,none listed; absolute-return benchmark,-0.21
+2015,Bonds and mortgages,0.18,Barclays Capital Aggregate,5.72
+2015,Cash,0.02,none listed; zero,0.0
+2015,TIPS,0.02,Citigroup Inflation Linked Securities,3.82
+2016,Global equity,0.51,MSCI ACWI,-4.34
+2016,Private equity,0.1,Cambridge Associates US Private Equity,5.26
+2016,Real estate,0.08,NCREIF Property,13.35
+2016,Absolute return,0.03,HFRX Global Hedge Fund,-8.19
+2016,Opportunistic,0.03,none listed; absolute-return benchmark,-8.19
+2016,Real assets,0.03,none listed; absolute-return benchmark,-8.19
+2016,Bonds and mortgages,0.18,Barclays Capital Aggregate,1.96
+2016,Cash,0.02,none listed; zero,0.0
+2016,TIPS,0.02,Citigroup Inflation Linked Securities,1.51
+2017,Global equity,0.5,MSCI ACWI,15.04
+2017,Private equity,0.1,Cambridge Associates US Private Equity,13.25
+2017,Real estate,0.1,NCREIF Property,7.97
+2017,Absolute return,0.02,HFRX Global Hedge Fund,7.48
+2017,Opportunistic,0.03,none listed; absolute-return benchmark,7.48
+2017,Real assets,0.03,CPI + 5%,2.4
+2017,Bonds and mortgages,0.17,Bloomberg Barclays Aggregate,0.44
+2017,Cash,0.01,none listed; zero,0.0
+2017,TIPS,0.04,Bloomberg Barclays US TIPS,1.48
+2018,Global equity,0.5,MSCI ACWI,14.85
+2018,Private equity,0.1,Cambridge Associates US Private Equity,17.49
+2018,Real estate,0.1,NCREIF Property,6.98
+2018,Absolute return,0.02,HFRX Global Hedge Fund,4.26
+2018,Opportunistic,0.03,none listed; absolute-return benchmark,4.26
+2018,Real assets,0.03,CPI + 5%,7.57
+2018,Bonds and mortgages,0.17,Bloomberg Barclays Aggregate,1.2
+2018,Cash,0.01,none listed; zero,0.0
+2018,TIPS,0.04,Bloomberg Barclays US TIPS,0.92
+2019,Global equity,0.5,MSCI ACWI,2.6
+2019,Private equity,0.1,Cambridge Associates US Private Equity,10.69
+2019,Real estate,0.1,NCREIF Property,6.7
+2019,Absolute return,0.02,HFRX Global Hedge Fund,-4.1
+2019,Opportunistic,0.03,none listed; absolute-return benchmark,-4.1
+2019,Real assets,0.03,CPI + 5%,6.9
+2019,Bonds and mortgages,0.17,Bloomberg Barclays Aggregate,4.48
+2019,Cash,0.01,none listed; zero,0.0
+2019,TIPS,0.04,Bloomberg Barclays US TIPS,2.7
+2020,Global equity,0.5,MSCI ACWI,-11.26
+2020,Private equity,0.1,Cambridge Associates US Private Equity,14.04
+2020,Real estate,0.1,real estate benchmark as listed,5.19
+2020,Absolute return,0.02,HFRI Fund of Funds Composite,-7.51
+2020,Opportunistic,0.03,none listed; absolute-return benchmark,-7.51
+2020,Real assets,0.03,CPI + 5%,6.59
+2020,Bonds and mortgages,0.17,Bloomberg Barclays Aggregate,8.93
+2020,Cash,0.01,none listed; zero,0.0
+2020,TIPS,0.04,Bloomberg Barclays US TIPS,6.85
+2021,Public equity,0.47,MSCI ACWI,54.6
+2021,Private equity,0.1,Cambridge Associates US Private Equity,22.93
+2021,Real estate,0.09,real estate benchmark as listed,1.11
+2021,Opportunistic and absolute return,0.03,actuarial rate of return + 2%,8.8
+2021,Credit,0.04,Credit Suisse Leveraged Loan + 2.5%,23.74
+2021,Real assets,0.03,CPI + 5%,7.86
+2021,Fixed income,0.23,Bloomberg US Aggregate,0.71
+2021,Cash,0.01,none listed; zero,0.0
+2022,Public equity,0.47,MSCI ACWI,7.28
+2022,Private equity,0.1,Cambridge Associates US Private Equity,39.92
+2022,Real estate,0.09,real estate benchmark as listed,21.66
+2022,Opportunistic and absolute return,0.03,actuarial rate of return + 2%,8.8
+2022,Credit,0.04,Credit Suisse Leveraged Loan + 2.5%,5.79
+2022,Real assets,0.03,CPI + 5%,14.08
+2022,Fixed income,0.23,Bloomberg US Aggregate,-4.15
+2022,Cash,0.01,none listed; zero,0.0
+2023,Public equity,0.47,MSCI ACWI,-7.44
+2023,Private equity,0.1,Cambridge Associates US Private Equity,-2.05
+2023,Real estate,0.09,real estate benchmark as listed,7.26
+2023,Opportunistic and absolute return,0.03,actuarial rate of return + 2%,8.8
+2023,Credit,0.04,Credit Suisse Leveraged Loan + 2.5%,4.67
+2023,Real assets,0.03,CPI + 5%,9.8
+2023,Fixed income,0.23,Bloomberg US Aggregate,-4.78
+2023,Cash,0.01,none listed; zero,0.0
+2024,Public equity,0.47,MSCI ACWI,23.22
+2024,Private equity,0.1,Cambridge Associates US Private Equity,9.07
+2024,Real estate,0.09,real estate benchmark as listed,-12.14
+2024,Opportunistic and absolute return,0.03,actuarial rate of return + 2%,7.9
+2024,Credit,0.04,Credit Suisse Leveraged Loan + 2.5%,15.19
+2024,Real assets,0.03,CPI + 5%,8.61
+2024,Fixed income,0.23,Bloomberg US Aggregate,1.7
+2024,Cash,0.01,none listed; zero,0.0
+2025,Public equity,0.39,MSCI ACWI,7.15
+2025,Private equity,0.15,Cambridge Associates US Private Equity,8.36
+2025,Real estate,0.12,real estate benchmark as listed,-1.64
+2025,Opportunistic and absolute return,0.03,actuarial rate of return + 2%,7.9
+2025,Credit,0.04,Credit Suisse Leveraged Loan + 2.5%,9.67
+2025,Real assets,0.04,CPI + 5%,7.47
+2025,Fixed income,0.22,Bloomberg US Aggregate,4.88
+2025,Cash,0.01,none listed; zero,0.0

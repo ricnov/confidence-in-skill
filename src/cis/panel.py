@@ -13,7 +13,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-__all__ = ["load_workbook_panel", "load_panel", "log_excess_matrix", "clean_panel", "SP500_FY_JUNE", "DATA_PROBLEMS"]
+__all__ = ["load_workbook_panel", "load_panel", "log_excess_matrix", "clean_panel", "SP500_FY_JUNE", "DATA_PROBLEMS",
+           "NY_POLICY_BENCHMARK"]
 
 _SKIP = {"Dist", "Stat", "Main"}
 _SUFFIX = re.compile(r"\s+\d{2}-\d{2}(Q\d)?$")
@@ -108,6 +109,16 @@ SP500_FY_JUNE = {2010: .1443, 2011: .3069, 2012: .0545, 2013: .2060, 2014: .2461
                  2017: .1790, 2018: .1437, 2019: .1042, 2020: .0751, 2021: .4079, 2022: -.1062, 2023: .1959,
                  2024: .2456, 2025: .1516}
 
+# The New York fund's policy benchmark, fiscal years ended 31 March 2010-2025: the sum over asset classes of the
+# Fund's long-term policy weight times the one-year return of the class's benchmark, both from the System's Annual
+# Comprehensive Financial Report of the year. Inputs in data/nyslrs_policy_benchmark.csv, built and documented by
+# scripts/build_ny_policy_benchmark.py. The NYSLRS sheet's own benchmark column was built the same way by the
+# article's collectors but with transcription errors in its inputs (fiscal 2010, 2014 and 2021 above all) and
+# with the Fund's own return measures in place of a benchmark for 2023-2025; see the paper's Section 2.
+NY_POLICY_BENCHMARK = {2010: 0.309895, 2011: 0.113155, 2012: 0.045615, 2013: 0.081375, 2014: 0.099067, 2015: 0.059043,
+                       2016: -0.009735, 2017: 0.102220, 2018: 0.105529, 2019: 0.039106, 2020: -0.020927, 2021: 0.296676,
+                       2022: 0.093265, 2023: -0.034030, 2024: 0.122217, 2025: 0.058419}
+
 DATA_PROBLEMS = {
     "LASERS": "benchmark column is the S&P 500 total return for fiscal 2010-2025 (16 of 19 years to the "
               "decimal), not the plan's policy benchmark",
@@ -123,22 +134,33 @@ DATA_PROBLEMS = {
 }
 
 
-def clean_panel(panel: pd.DataFrame, ny_benchmark: str = "NYSLRS") -> pd.DataFrame:
+def clean_panel(panel: pd.DataFrame, ny_benchmark: str = "policy") -> pd.DataFrame:
     """The article's panel reduced to distinct, correctly benchmarked programmes (42 of the 47 rows).
 
     Drops LASERS (benchmark is the S&P 500), NJ TPAF and NJDRPB (the New Jersey Common Pension Fund
     appears three times; NJ PERS is kept, whose benchmark agrees with NJ TPAF's in every common year),
     PA SERS (a copy of PA PSERS for 20 of 22 years) and NYSCRF (the same fund as NYSLRS). The New York
-    fund is kept once, under the name NYSLRS, measured against the NYSLRS sheet's benchmark by default
-    (a column the Fund's reports do not document for 2010-2022); with ny_benchmark="NYSCRF" it is measured
-    instead against the NYSCRF sheet's column over the 13 years that sheet covers, which is the Fund's
-    own money-weighted return, so this option measures the fund against itself.
+    fund is kept once, under the name NYSLRS, and by default (ny_benchmark="policy") measured against its
+    policy benchmark rebuilt from the Fund's reports (NY_POLICY_BENCHMARK). With ny_benchmark="NYSLRS" it
+    is measured against the NYSLRS sheet's own benchmark column, as in the article (the collectors' version
+    of the same construction, with errors in its inputs); with ny_benchmark="NYSCRF" against the NYSCRF
+    sheet's column over the 13 years that sheet covers, which is the Fund's own money-weighted return, so
+    that option measures the fund against itself.
     """
     out = panel[~panel["fund"].isin(DATA_PROBLEMS)].copy()
-    if ny_benchmark == "NYSCRF":
+    if ny_benchmark == "policy":
+        ny = out["fund"] == "NYSLRS"
+        years = out.loc[ny, "year"]
+        missing = sorted(set(years) - set(NY_POLICY_BENCHMARK))
+        if missing:
+            raise ValueError("no policy benchmark for NYSLRS in %s" % missing)
+        out.loc[ny, "benchmark"] = years.map(NY_POLICY_BENCHMARK).values
+    elif ny_benchmark == "NYSCRF":
         alt = panel[panel["fund"] == "NYSCRF"].set_index("year")["benchmark"]
         ny = out["fund"] == "NYSLRS"
         out = out[~ny | out["year"].isin(alt.index)].copy()
         ny = out["fund"] == "NYSLRS"
         out.loc[ny, "benchmark"] = out.loc[ny, "year"].map(alt).values
+    elif ny_benchmark != "NYSLRS":
+        raise ValueError("ny_benchmark must be 'policy', 'NYSLRS' or 'NYSCRF'")
     return out.reset_index(drop=True)

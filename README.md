@@ -40,11 +40,14 @@ src/cis/dispersion.py  panel-level statistics under the same null: is there skil
 data/appendix_III_published.csv   Appendix III as printed, transcribed and checked cell by cell
 data/panel_returns.csv            the 47 plans' annual actual and benchmark returns (data/DATA.md)
 data/sheet_terminal_values.csv    what each workbook sheet printed (K, confidence, tracking error)
+data/nyslrs_policy_benchmark.csv  the New York fund's policy benchmark rebuilt from its reports: policy weights and
+                                  asset-class benchmark returns by fiscal year (scripts/build_ny_policy_benchmark.py)
 scripts/check_published_numbers.py  reproduces the cross-sectional results from the printed appendix
 scripts/run_raw_analysis.py         the same on the annual returns, plus the bootstrap
 scripts/run_dispersion_tests.py     the panel-level tests (results/dispersion_tests.csv, paper Table 2)
 scripts/run_peer_comparison.py      what comparisons between plans are worth (paper Section 4.6)
 scripts/data_checks.py              benchmark columns that are the S&P 500; sheets that duplicate each other
+scripts/build_ny_policy_benchmark.py the NYSLRS policy benchmark from the Fund's reports, against the sheet's column
 scripts/run_everything.py           every number the paper quotes, from one command (results/summary_*.json)
 scripts/build_extended_panel.py     the 50-programme panel with the nine further plans (second workbook)
 scripts/run_framework_tests.py      confidence as a forecast: record-and-sequel tests, shrinkage, posterior
@@ -104,13 +107,22 @@ total return for fiscal 2010–2025 (16 years to the decimal); **NYSCRF** is the
 (identical returns in all 13 common years) and its "benchmark" column is the Fund's own money-weighted
 rate of return (for fiscal 2015–2023 it equals, to the basis point, the schedule of investment returns in
 the System's Annual Comprehensive Financial Reports; 2024 is the time-weighted return and 2025 the assumed
-rate of return), against which the fund's *t* is 0.15 instead of 4.24; the NYSLRS sheet's benchmark
-column shares those 2023–2025 values and could not be traced to the Fund's reports for 2010–2022; the
-three **New Jersey** rows are one investment programme; the **PA SERS** sheet copies PA PSERS in 20 of 22
-years. `cis.panel.clean_panel` reduces the panel to 42 programmes, and `scripts/run_everything.py --clean`
-reproduces every number in the paper on it (`--ny NYSCRF` measures New York against the money-weighted
-column, a fund against itself). The article's two extreme results — a plan at 0% and a plan at 100% —
-are the S&P 500 column and the untraceable NYSLRS column.
+rate of return), against which the fund's *t* is 0.15 instead of 4.24; the three **New Jersey** rows are
+one investment programme; the **PA SERS** sheet copies PA PSERS in 20 of 22 years.
+
+The **NYSLRS** sheet's benchmark column was built by the article's collectors as the sum over asset classes
+of the Fund's long-term policy weight times the one-year return of the class's benchmark, both from the
+Fund's reports, for fiscal 2010–2022, with the three NYSCRF values for 2023–2025. Rebuilt from the reports
+for all sixteen years (`scripts/build_ny_policy_benchmark.py`, inputs in `data/nyslrs_policy_benchmark.csv`,
+annual values in `cis.panel.NY_POLICY_BENCHMARK`) the sum matches the column within a quarter of a point in
+ten years and departs in the others through inputs taken from the wrong row of the report, above all fiscal
+2010, where the bond benchmark is entered as −16.86% (the real-estate index) in place of +7.69%: the policy
+benchmark that year is 30.99%, not 25.28%. Against the rebuilt benchmark the fund's *t* is 1.64 (95%
+confidence, tenth of 42) instead of 4.24 (100%, first). `cis.panel.clean_panel` reduces the panel to 42
+programmes with New York against the rebuilt benchmark, and `scripts/run_everything.py --clean` reproduces
+every number in the paper on it (`--ny NYSLRS` measures New York against the sheet's column, as the article
+did; `--ny NYSCRF` against the money-weighted column, a fund against itself). The article's two extreme
+results — a plan at 0% and a plan at 100% — are the S&P 500 column and the fiscal 2010 bond input.
 
 ## Nine further plans (second workbook, October 2026)
 

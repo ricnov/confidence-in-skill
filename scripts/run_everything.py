@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Every number the paper quotes, from one command.
 
-    python scripts/run_everything.py data/panel_returns.csv [--clean] [--ny NYSCRF] [--B 50000] [--out results/summary_X.json]
+    python scripts/run_everything.py data/panel_returns.csv [--clean] [--ny NYSLRS|NYSCRF] [--B 50000] [--out results/summary_X.json]
 
 Without --clean: the article's 47 rows as they stand. With --clean: the 42 distinct, correctly
-benchmarked programmes of cis.panel.clean_panel (and --ny NYSCRF measures the New York fund against the
-NYSCRF sheet's benchmark instead of the NYSLRS sheet's). Seeds are the paper's (20261011 for the
-bootstrap, 20261012 for the simulations).
+benchmarked programmes of cis.panel.clean_panel, the New York fund against its policy benchmark rebuilt
+from its reports (--ny NYSLRS measures it against the NYSLRS sheet's own column instead, as the article
+did, and --ny NYSCRF against the NYSCRF sheet's, which is the Fund's own money-weighted return). Seeds are
+the paper's (20261011 for the bootstrap, 20261012 for the simulations).
 """
 import argparse
 import json
@@ -25,7 +26,7 @@ from cis.multiple import bh_q, bh_reject, holm_reject
 ap = argparse.ArgumentParser()
 ap.add_argument("panel")
 ap.add_argument("--clean", action="store_true")
-ap.add_argument("--ny", default="NYSLRS")
+ap.add_argument("--ny", default="policy", choices=["policy", "NYSLRS", "NYSCRF"])
 ap.add_argument("--B", type=int, default=50000)
 ap.add_argument("--out", default=None)
 ap.add_argument("--extremes", default="NYSLRS,LASERS,DAL F&P,WV ERS", help="comma-separated plans left out in the without_extremes set")
@@ -35,7 +36,7 @@ panel, meta = load_panel(a.panel)
 label = "article's 47 rows"
 if a.clean:
     panel = clean_panel(panel, ny_benchmark=a.ny)
-    label = "cleaned panel, NY against the %s sheet's benchmark" % a.ny
+    label = "cleaned panel, NY against " + ("its policy benchmark" if a.ny == "policy" else "the %s sheet's benchmark" % a.ny)
 S = {"panel": label, "B": a.B}
 print("=== %s ===" % label)
 
@@ -193,7 +194,7 @@ ex = R[R.a.isin(["CalPERS", "NVPERS"]) & R.b.isin(["CalPERS", "NVPERS"])]
 if len(ex): S["peer"]["calpers_vs_nvpers"] = {"diff_bp": round(float(1e4 * ex["diff"].iloc[0])), "p": round(float(ex.p.iloc[0]), 2)}
 print("peer:", S["peer"])
 
-out = Path(a.out) if a.out else Path("results") / ("summary_%s%s.json" % ("clean" if a.clean else "article", "_" + a.ny if a.clean and a.ny != "NYSLRS" else ""))
+out = Path(a.out) if a.out else Path("results") / ("summary_%s%s.json" % ("clean" if a.clean else "article", "_" + a.ny if a.clean and a.ny != "policy" else ""))
 out.parent.mkdir(exist_ok=True)
 json.dump(S, open(out, "w"), indent=1, default=str)
 res.to_csv(out.with_suffix(".csv"))

@@ -50,7 +50,7 @@ ax.errorbar(a.t1, a.m2, yerr=a.se2, fmt="o", color="C0", markersize=4, ecolor="0
             label="at or above 90% after ten years")
 ax.errorbar(b.t1, b.m2, yerr=b.se2, fmt="o", markerfacecolor="white", markeredgecolor="C0", color="C0", markersize=4,
             ecolor="0.6", elinewidth=0.8, label="below 90% after ten years")
-labels = {"SWIB": (-14, 8), "NYSLRS": (-24, -13), "WV ERS": (5, 2), "MASSPRIM": (5, 2), "M PERS": (5, -3), "AZSRS": (5, -4),
+labels = {"SWIB": (-14, 8), "NYSLRS": (6, -16), "WV ERS": (5, 2), "MASSPRIM": (5, 2), "M PERS": (5, -3), "AZSRS": (5, -4),
           "FL SBA": (4, -10), "IL TRS": (5, 2), "CalPERS": (-30, -10), "NYC TRS": (4, -9)}
 for f, off in labels.items():
     if f in set(df.fund):

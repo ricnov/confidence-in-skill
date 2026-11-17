@@ -22,7 +22,7 @@ Maine PERS, named in the article, has no return sheet in the workbook and is abs
 
 Same columns. The 42 programmes of `panel_returns.csv` after the exclusions of the paper's Section 2
 (`cis.panel.clean_panel`: LASERS, NYSCRF, NJ TPAF, NJDRPB, PA SERS dropped as duplicates or
-mis-benchmarked rows), with the first workbook's SWIB sheet replaced by the Wisconsin Core Fund series
+mis-benchmarked rows, and NYSLRS measured against its policy benchmark rebuilt from the Fund's reports), with the first workbook's SWIB sheet replaced by the Wisconsin Core Fund series
 of the second workbook (calendar 2010–2025; the first sheet is wrong before 2014), plus eight further
 plans from the second workbook: CT TRS, Colorado PERA, Houston POPS, IL TRS, INPRS, Iowa PERS and Ohio
 PERS (fiscal 2010/2011–2025) and Maine PERS (fiscal 2004–2023, fiscal 2020 dropped because its
@@ -33,6 +33,21 @@ from the second workbook (`cis.panel_extra.load_extra_workbook`, one parser per 
 University after the article and provided in a second workbook in October 2026; they are redistributed
 here with his permission (correspondence, 31 October 2026), on the same terms as the first panel: cite
 the article and credit the collectors.
+
+## `nyslrs_policy_benchmark.csv` — the New York fund's policy benchmark, rebuilt from its reports
+
+One row per fiscal year (ended 31 March, 2010–2025) and asset class: `year`, `asset_class`, `policy_weight`
+(the Fund's long-term policy allocation, as a fraction), `benchmark` (the index the report lists for the
+class, or the substitute used where it lists none), `benchmark_return` (the index's one-year return, in
+percent). Source: the Annual Comprehensive Financial Report (Comprehensive Annual Financial Report before
+2022) of the New York State and Local Retirement System for each fiscal year, Investment Section, asset
+allocation and investment results. The sum over classes of weight times return is the policy benchmark
+`cis.panel.NY_POLICY_BENCHMARK`, which `cis.panel.clean_panel` uses for NYSLRS by default; the NYSLRS sheet's
+own column, built the same way by the article's collectors, has transcription errors in its inputs (see
+the paper's Section 2 and `scripts/build_ny_policy_benchmark.py`, which writes this file and prints the
+comparison). Where the report lists no benchmark, opportunistic (through fiscal 2020) and real assets
+(through fiscal 2016) take the absolute-return benchmark, as in the collectors' workbook, and cash takes
+zero.
 
 ## `sheet_terminal_values.csv` — what each workbook sheet printed
 

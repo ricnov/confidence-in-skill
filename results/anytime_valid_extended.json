@@ -9,33 +9,31 @@
   "first_look_naive": 10,
   "naive_ever_90_from_first_look": 18,
   "naive_final_90": 15,
-  "anytime_ever_90": 8,
-  "anytime_two_ever_90": 5,
-  "anytime_final_90": 8,
+  "anytime_ever_90": 7,
+  "anytime_two_ever_90": 4,
+  "anytime_final_90": 7,
   "naive_ever_95_from_first_look": 17,
-  "naive_final_95": 11,
-  "anytime_ever_95": 5,
-  "anytime_two_ever_95": 3,
-  "anytime_final_95": 5,
+  "naive_final_95": 10,
+  "anytime_ever_95": 4,
+  "anytime_two_ever_95": 2,
+  "anytime_final_95": 4,
   "sensitivity": {
    "a=0.25": {
     "ever_90": [
      "MONT COUNTY ERS",
-     "NYSLRS",
      "SWIB"
     ],
-    "n_ever_90": 3,
+    "n_ever_90": 2,
     "n_ever_95": 1
    },
    "a=0.3": {
     "ever_90": [
      "FL SBA",
      "MONT COUNTY ERS",
-     "NYSLRS",
      "SWIB"
     ],
-    "n_ever_90": 4,
-    "n_ever_95": 2
+    "n_ever_90": 3,
+    "n_ever_95": 1
    },
    "a=0.5": {
     "ever_90": [
@@ -43,12 +41,11 @@
      "FL SBA",
      "MASSPRIM",
      "MONT COUNTY ERS",
-     "NYSLRS",
      "SWIB",
      "WV ERS"
     ],
-    "n_ever_90": 7,
-    "n_ever_95": 4
+    "n_ever_90": 6,
+    "n_ever_95": 3
    },
    "a=1": {
     "ever_90": [
@@ -58,14 +55,13 @@
      "MIZZOU PERS",
      "MONT COUNTY ERS",
      "NYCERS",
-     "NYSLRS",
      "PA PSERS",
      "SWIB",
      "VRS",
      "WV ERS"
     ],
-    "n_ever_90": 11,
-    "n_ever_95": 7
+    "n_ever_90": 10,
+    "n_ever_95": 6
    },
    "mixture 0.25/0.5/1": {
     "ever_90": [
@@ -74,12 +70,11 @@
      "MASSPRIM",
      "MIZZOU PERS",
      "MONT COUNTY ERS",
-     "NYSLRS",
      "SWIB",
      "WV ERS"
     ],
-    "n_ever_90": 8,
-    "n_ever_95": 5
+    "n_ever_90": 7,
+    "n_ever_95": 4
    }
   }
  },
@@ -89,8 +84,8 @@
    "P_anytime_ever_95": 0.011,
    "P_naive_ever_90_from_first_look": 0.24616666666666667,
    "P_naive_ever_95_from_first_look": 0.15466666666666667,
-   "E_M_n_mean_over_n": 1.0670679789502755,
-   "E_M_n_at_T": 1.1315171088806029,
+   "E_M_n_mean_over_n": 1.0670680224304843,
+   "E_M_n_at_T": 1.1315171088806064,
    "nsim": 6000
   },
   "T50": {
@@ -98,8 +93,8 @@
    "P_anytime_ever_95": 0.019333333333333334,
    "P_naive_ever_90_from_first_look": 0.33,
    "P_naive_ever_95_from_first_look": 0.20966666666666667,
-   "E_M_n_mean_over_n": 0.868951274385317,
-   "E_M_n_at_T": 0.81358308365879,
+   "E_M_n_mean_over_n": 0.868951295679955,
+   "E_M_n_at_T": 0.8135830836587917,
    "nsim": 6000
   }
  },
@@ -136,11 +131,11 @@
   }
  },
  "year_cluster_null_count": {
-  "mean": 1.0246666666666666,
-  "sd": 1.3371829426904243,
+  "mean": 1.026,
+  "sd": 1.3386525563665377,
   "p95": 4.0,
-  "observed": 8,
-  "P_ge_observed": 0.0013333333333333333,
+  "observed": 7,
+  "P_ge_observed": 0.006666666666666667,
   "B": 1500
  },
  "per_plan": {
@@ -159,22 +154,6 @@
    "naive_first_95": 2019.0,
    "anytime_first_95": 2019.0,
    "anytime_two_first_95": 2020.0
-  },
-  "NYSLRS": {
-   "n": 16,
-   "mean_bp": 108.9865,
-   "t": 4.235,
-   "naive_final": 1.0,
-   "C_one_final": 0.9932,
-   "C_two_final": 0.9865,
-   "M_one_final": 85.5398,
-   "M_one_max": 147.9149,
-   "naive_first_90": 2019.0,
-   "anytime_first_90": 2015.0,
-   "anytime_two_first_90": 2017.0,
-   "naive_first_95": 2019.0,
-   "anytime_first_95": 2017.0,
-   "anytime_two_first_95": 2018.0
   },
   "WV ERS": {
    "n": 17,
@@ -333,6 +312,22 @@
    "anytime_first_90": null,
    "anytime_two_first_90": null,
    "naive_first_95": 2017.0,
+   "anytime_first_95": null,
+   "anytime_two_first_95": null
+  },
+  "NYSLRS": {
+   "n": 16,
+   "mean_bp": 71.8191,
+   "t": 1.6373,
+   "naive_final": 0.9492,
+   "C_one_final": 0.6724,
+   "C_two_final": 0.3891,
+   "M_one_final": 2.0601,
+   "M_one_max": 3.0528,
+   "naive_first_90": 2019.0,
+   "anytime_first_90": null,
+   "anytime_two_first_90": null,
+   "naive_first_95": 2019.0,
    "anytime_first_95": null,
    "anytime_two_first_95": null
   },

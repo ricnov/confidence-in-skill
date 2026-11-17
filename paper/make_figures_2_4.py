@@ -3,8 +3,9 @@
     python paper/make_figures_2_4.py [data/panel_returns.csv]
 
 Figure 2  Two benchmark columns: (a) the LASERS sheet's benchmark against the S&P 500 total return,
-          fiscal years; (b) the New York fund's cumulative log excess return against each of its two
-          benchmark columns, 2013-2025.
+          fiscal years; (b) the New York fund's cumulative log excess return against the NYSLRS sheet's
+          benchmark column, against its policy benchmark rebuilt from the Fund's reports (cis.panel.
+          NY_POLICY_BENCHMARK) and against the NYSCRF sheet's column, which is the Fund's own return.
 Figure 3  (no longer in the paper; kept for the record) Persistence: second-half against first-half mean
           log excess return, 42 programmes. The paper's Figure 3 is now paper/make_figure_forecast.py.
 Figure 4  CalSTRS's expanding-window confidence path with the article's numerator, the model-consistent
@@ -21,7 +22,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.ticker import PercentFormatter
 
-from cis.panel import load_panel, clean_panel, log_excess_matrix, SP500_FY_JUNE
+from cis.panel import load_panel, clean_panel, log_excess_matrix, SP500_FY_JUNE, NY_POLICY_BENCHMARK
 from cis.dispersion import half_masks
 from cis.anytime import e_process, confidence_path
 
@@ -31,7 +32,7 @@ panel, _ = load_panel(src)
 plt.rcdefaults()
 
 # ---------------------------------------------------------------- Figure 2
-fig, axes = plt.subplots(1, 2, figsize=(6.3, 2.55))
+fig, axes = plt.subplots(1, 2, figsize=(6.3, 2.35))
 ax = axes[0]
 las = panel[panel.fund == "LASERS"].set_index("year")
 sp = pd.Series({**{2007: .2059, 2008: -.1312, 2009: -.2621}, **SP500_FY_JUNE})   # June fiscal years
@@ -51,20 +52,25 @@ ax.xaxis.set_major_formatter(PercentFormatter(1.0, decimals=0)); ax.yaxis.set_ma
 ax.legend(loc="upper left", fontsize=8)
 ax = axes[1]
 ny = panel[panel.fund == "NYSLRS"].set_index("year"); crf = panel[panel.fund == "NYSCRF"].set_index("year")
-common = ny.index.intersection(crf.index)
-d1 = np.log1p(ny.loc[common, "actual"]) - np.log1p(ny.loc[common, "benchmark"])
-d2 = np.log1p(crf.loc[common, "actual"]) - np.log1p(crf.loc[common, "benchmark"])
-c1 = np.concatenate([[0], np.cumsum(d1.values)]); c2 = np.concatenate([[0], np.cumsum(d2.values)])
-t_axis = np.concatenate([[common[0] - 1], common])
+pol = pd.Series(NY_POLICY_BENCHMARK)
+yrs_ny = ny.index
+d_sheet = np.log1p(ny["actual"]) - np.log1p(ny["benchmark"])
+d_pol = np.log1p(ny["actual"]) - np.log1p(pol.reindex(yrs_ny))
+common = yrs_ny.intersection(crf.index)
+d_crf = np.log1p(crf.loc[common, "actual"]) - np.log1p(crf.loc[common, "benchmark"])
+cum = lambda d: np.concatenate([[0], np.cumsum(d.values)])
 ax.axhline(0, color="k", linewidth=0.8)
-ax.plot(t_axis, 100 * c1, "C0-", label="NYSLRS benchmark column")
-ax.plot(t_axis, 100 * c2, "C1--", label="NYSCRF column (money-weighted return)")
+ax.plot(np.concatenate([[yrs_ny[0] - 1], yrs_ny]), 100 * cum(d_sheet), "C0-", label="NYSLRS sheet's column")
+ax.plot(np.concatenate([[yrs_ny[0] - 1], yrs_ny]), 100 * cum(d_pol), "C3-", label="policy benchmark rebuilt from the reports")
+ax.plot(np.concatenate([[common[0] - 1], common]), 100 * cum(d_crf), "C1--", label="NYSCRF column (the Fund's own return)")
 ax.set_xlabel("fiscal year"); ax.set_ylabel("cumulative log excess return, %")
-ax.set_xticks([2013, 2016, 2019, 2022, 2025])
-ax.legend(loc="center right", fontsize=8)
+ax.set_xticks([2010, 2013, 2016, 2019, 2022, 2025])
+ax.set_ylim(-6, 28)
+ax.legend(loc="upper left", fontsize=7)
+c1, c2 = cum(d_sheet), cum(d_pol)
 fig.tight_layout()
 fig.savefig(ROOT / "paper" / "fig_benchmarks.pdf"); fig.savefig(ROOT / "paper" / "fig_benchmarks.png", dpi=200)
-print("fig 2: LASERS on-diagonal years %d; NY cumulative %.1f%% vs %.1f%%" % (int(late.sum()), 100 * c1[-1], 100 * c2[-1]))
+print("fig 2: LASERS on-diagonal years %d; NY cumulative against the sheet's column %.1f%%, against the policy benchmark %.1f%%" % (int(late.sum()), 100 * c1[-1], 100 * c2[-1]))
 
 # ---------------------------------------------------------------- Figure 3
 cl = clean_panel(panel)

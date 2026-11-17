@@ -44,7 +44,7 @@ obs_max = float(t_obs.max())
 top_fund = boot["funds"][int(np.argmax(t_obs))]
 
 plt.rcdefaults()
-fig, axes = plt.subplots(1, 2, figsize=(6.3, 2.7))
+fig, axes = plt.subplots(1, 2, figsize=(6.3, 2.5))
 
 ax = axes[0]
 bins = np.arange(-0.5, 36.5, 1)
