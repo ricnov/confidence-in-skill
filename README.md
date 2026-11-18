@@ -48,6 +48,7 @@ scripts/run_dispersion_tests.py     the panel-level tests (results/dispersion_te
 scripts/run_peer_comparison.py      what comparisons between plans are worth (paper Section 4.6)
 scripts/data_checks.py              benchmark columns that are the S&P 500; sheets that duplicate each other
 scripts/build_ny_policy_benchmark.py the NYSLRS policy benchmark from the Fund's reports, against the sheet's column
+scripts/check_ny_inputs_against_reports.py  every input of that benchmark checked against the text of the sixteen reports
 scripts/run_everything.py           every number the paper quotes, from one command (results/summary_*.json)
 scripts/build_extended_panel.py     the 50-programme panel with the nine further plans (second workbook)
 scripts/run_framework_tests.py      confidence as a forecast: record-and-sequel tests, shrinkage, posterior
