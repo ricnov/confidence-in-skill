@@ -13,8 +13,9 @@ benchmark, as in the collectors' workbook, and cash (one or two percent of the p
 2021 the report lists the actuarial rate of return plus two points for opportunistic and absolute-return
 strategies and the consumer price index plus five for real assets, and those are used.
 
-With --write the inputs go to data/nyslrs_policy_benchmark.csv (one row per year and class) and the annual sums
-are printed in the form of the NY_POLICY_BENCHMARK constant in cis/panel.py. Without it the script prints the
+With --write the inputs go to data/nyslrs_policy_benchmark.csv (one row per year and class, with the report, the
+pages of its two tables and its URL at osc.ny.gov) and the annual sums are printed in the form of the
+NY_POLICY_BENCHMARK constant in cis/panel.py. Index names are as each report prints them. Without it the script prints the
 series next to the sheet's column and the fund's return, with NYSLRS's statistics against each.
 """
 import sys
@@ -32,21 +33,30 @@ from cis.panel import load_panel  # noqa: E402
 # that year: Investment Section, Investment Results (returns) and asset allocation (policy). Returns in percent.
 HFRX = {2010: 12.90, 2011: 6.29, 2012: -7.18, 2013: 2.74, 2014: 5.62, 2015: -0.21, 2016: -8.19, 2017: 7.48,
         2018: 4.26, 2019: -4.10, 2020: -7.51}          # HFRX; HFRI from fiscal 2020; 2010 from the report's narrative
+# where each year's two tables are: (Investment Results page, Asset Allocation page), as the PDFs number them
+PAGES = {2010: (69, 71), 2011: (71, 73), 2012: (70, 72), 2013: (74, 76), 2014: (78, 80), 2015: (86, 88), 2016: (90, 92),
+         2017: (93, 95), 2018: (94, 96), 2019: (95, 97), 2020: (98, 100), 2021: (104, 106), 2022: (108, 110),
+         2023: (108, 110), 2024: (113, 115), 2025: (113, 115)}
+URL = ("https://www.osc.ny.gov/files/retirement/resources/pdf/comprehensive-annual-financial-report-%d.pdf",
+       "https://www.osc.ny.gov/files/retirement/resources/pdf/annual-comprehensive-financial-report-%d.pdf")
 rows = []
 
 
 def add(year, cls, weight, benchmark, ret):
-    rows.append(dict(year=year, asset_class=cls, policy_weight=weight, benchmark=benchmark, benchmark_return=ret))
+    report = ("CAFR" if year < 2022 else "ACFR") + " FY%d" % year
+    pages = "Investment Results p. %d; Asset Allocation p. %d" % PAGES[year]
+    rows.append(dict(year=year, asset_class=cls, policy_weight=weight, benchmark=benchmark, benchmark_return=ret,
+                     report=report, pages=pages, url=URL[0 if year < 2022 else 1] % year))
 
 
 # fiscal 2010: domestic and international equity measured separately; bonds, cash and mortgages one class
-add(2010, "Domestic equity", .35, "Russell 3000", 52.44)
-add(2010, "International equity", .16, "MSCI ACWI ex US", 60.93)
-add(2010, "Private equity", .08, "Cambridge Associates US Private Equity", 13.46)
-add(2010, "Real estate", .06, "NCREIF Property", -16.86)
-add(2010, "Absolute return", .05, "HFRX Global Hedge Fund", HFRX[2010])
-add(2010, "Bonds, cash and mortgages", .225, "Barclays Capital Aggregate", 7.69)
-add(2010, "TIPS", .075, "Salomon Smith Barney Inflation Linked", 5.95)
+add(2010, "Domestic equity", .35, "Russell 3000 Index", 52.44)
+add(2010, "International equity", .16, "MSCI All Country World Index Free ex US", 60.93)
+add(2010, "Private equity", .08, "Cambridge US Private Equity Index", 13.46)
+add(2010, "Real estate", .06, "NCREIF", -16.86)
+add(2010, "Absolute return", .05, "HFRX (narrative, p. 65: the program benchmark returned 12.9 percent)", HFRX[2010])
+add(2010, "Bonds, cash and mortgages", .225, "Barclays Capital Aggregate Bond Index", 7.69)
+add(2010, "TIPS", .075, "Salomon Smith Barney Inflation Linked Index", 5.95)
 
 # fiscal 2011-2014: global equity 43 (domestic 30, international 13), PE 10, RE 6, AR 4, opportunistic 4,
 # real assets 3, bonds and mortgages 22, TIPS 8
@@ -55,29 +65,29 @@ R = {2011: dict(eq=14.08, pe=19.97, re=13.11, agg=5.12, tips=8.24),
      2013: dict(eq=10.55, pe=13.81, re=10.54, agg=3.77, tips=5.71),
      2014: dict(eq=16.55, pe=20.77, re=10.99, agg=-0.10, tips=-6.78)}
 for y, r in R.items():
-    add(y, "Global equity", .43, "MSCI ACWI", r["eq"])
-    add(y, "Private equity", .10, "Cambridge Associates US Private Equity", r["pe"])
-    add(y, "Real estate", .06, "NCREIF Property", r["re"])
-    add(y, "Absolute return", .04, "HFRX Global Hedge Fund", HFRX[y])
+    add(y, "Global equity", .43, "MSCI All Country World Index Free", r["eq"])
+    add(y, "Private equity", .10, "Cambridge U.S. Private Equity Index", r["pe"])
+    add(y, "Real estate", .06, "NCREIF", r["re"])
+    add(y, "Absolute return", .04, "HFRX Global Hedge Fund Index", HFRX[y])
     add(y, "Opportunistic", .04, "none listed; absolute-return benchmark", HFRX[y])
     add(y, "Real assets", .03, "none listed; absolute-return benchmark", HFRX[y])
-    add(y, "Bonds and mortgages", .22, "Barclays Capital Aggregate", r["agg"])
-    add(y, "TIPS", .08, "Citigroup Inflation Linked Securities", r["tips"])
+    add(y, "Bonds and mortgages", .22, "Barclays Capital Aggregate Bond Index", r["agg"])
+    add(y, "TIPS", .08, "Salomon Smith Barney Inflation Linked Index", r["tips"])
 
 # fiscal 2015-2016: long-term policy equity 51 (38 + 13), PE 10, RE 8, AR 3, opportunistic 3, real assets 3,
 # bonds and mortgages 18, cash 2, TIPS 2
 R = {2015: dict(eq=5.42, pe=11.09, re=11.80, agg=5.72, tips=3.82),
      2016: dict(eq=-4.34, pe=5.26, re=13.35, agg=1.96, tips=1.51)}
 for y, r in R.items():
-    add(y, "Global equity", .51, "MSCI ACWI", r["eq"])
-    add(y, "Private equity", .10, "Cambridge Associates US Private Equity", r["pe"])
-    add(y, "Real estate", .08, "NCREIF Property", r["re"])
-    add(y, "Absolute return", .03, "HFRX Global Hedge Fund", HFRX[y])
+    add(y, "Global equity", .51, "MSCI All Country World Index Free", r["eq"])
+    add(y, "Private equity", .10, "Cambridge U.S. Private Equity Index", r["pe"])
+    add(y, "Real estate", .08, "NCREIF", r["re"])
+    add(y, "Absolute return", .03, "HFRX Global Hedge Fund Index", HFRX[y])
     add(y, "Opportunistic", .03, "none listed; absolute-return benchmark", HFRX[y])
     add(y, "Real assets", .03, "none listed; absolute-return benchmark", HFRX[y])
-    add(y, "Bonds and mortgages", .18, "Barclays Capital Aggregate", r["agg"])
+    add(y, "Bonds and mortgages", .18, "Barclays Capital Aggregate Bond Index", r["agg"])
     add(y, "Cash", .02, "none listed; zero", 0.0)
-    add(y, "TIPS", .02, "Citigroup Inflation Linked Securities", r["tips"])
+    add(y, "TIPS", .02, "Salomon Smith Barney Inflation Linked Index" if y == 2015 else "Barclays Capital U.S. TIPS Index", r["tips"])
 
 # fiscal 2017-2020: long-term policy equity 50 (36 + 14), PE 10, RE 10, AR 2, opportunistic 3, real assets 3,
 # bonds and mortgages 17, cash 1, TIPS 4; real assets measured against CPI + 5% from fiscal 2017
@@ -85,16 +95,20 @@ R = {2017: dict(eq=15.04, pe=13.25, re=7.97, ra=2.40, agg=0.44, tips=1.48),
      2018: dict(eq=14.85, pe=17.49, re=6.98, ra=7.57, agg=1.20, tips=0.92),
      2019: dict(eq=2.60, pe=10.69, re=6.70, ra=6.90, agg=4.48, tips=2.70),
      2020: dict(eq=-11.26, pe=14.04, re=5.19, ra=6.59, agg=8.93, tips=6.85)}
+AGG = {2017: "Barclays Capital Aggregate Bond Index", 2018: "Bloomberg Barclays Capital Aggregate Bond Index",
+       2019: "Bloomberg Barclays Aggregate Bond Index", 2020: "Bloomberg Barclays Aggregate Bond Index"}
+TIPS = {2017: "Barclays Capital U.S. TIPS Index", 2018: "Bloomberg Barclays Capital U.S. TIPS Index",
+        2019: "Bloomberg Barclays U.S. TIPS Index", 2020: "Bloomberg Barclays U.S. TIPS Index"}
 for y, r in R.items():
-    add(y, "Global equity", .50, "MSCI ACWI", r["eq"])
-    add(y, "Private equity", .10, "Cambridge Associates US Private Equity", r["pe"])
-    add(y, "Real estate", .10, "NCREIF Property" if y < 2020 else "real estate benchmark as listed", r["re"])
-    add(y, "Absolute return", .02, "HFRX Global Hedge Fund" if y < 2020 else "HFRI Fund of Funds Composite", HFRX[y])
+    add(y, "Global equity", .50, "MSCI All Country World Index Free" if y < 2019 else "MSCI All Country World Index", r["eq"])
+    add(y, "Private equity", .10, "Cambridge U.S. Private Equity Index" + (" (1Q Lag)" if y == 2020 else ""), r["pe"])
+    add(y, "Real estate", .10, "NCREIF" if y < 2020 else "Real Estate Benchmark", r["re"])
+    add(y, "Absolute return", .02, "HFRX Global Hedge Fund Index" if y < 2020 else "HFRI Asset-Weighted Composite Index", HFRX[y])
     add(y, "Opportunistic", .03, "none listed; absolute-return benchmark", HFRX[y])
-    add(y, "Real assets", .03, "CPI + 5%", r["ra"])
-    add(y, "Bonds and mortgages", .17, "Bloomberg Barclays Aggregate", r["agg"])
+    add(y, "Real assets", .03, "U.S. CPI + 5%", r["ra"])
+    add(y, "Bonds and mortgages", .17, AGG[y], r["agg"])
     add(y, "Cash", .01, "none listed; zero", 0.0)
-    add(y, "TIPS", .04, "Bloomberg Barclays US TIPS", r["tips"])
+    add(y, "TIPS", .04, TIPS[y], r["tips"])
 
 # fiscal 2021-2025: public equity 47 (32 + 15), PE 10, RE 9, opportunistic/absolute-return 3, credit 4,
 # real assets 3, fixed income 23, cash 1; fiscal 2025 policy: 39 (25 + 14), 15, 12, 3, 4, 4, 22, 1
@@ -106,13 +120,13 @@ R = {2021: dict(eq=54.60, pe=22.93, re=1.11, oars=8.80, cr=23.74, ra=7.86, agg=0
 for y, r in R.items():
     w = dict(eq=.47, pe=.10, re=.09, oars=.03, cr=.04, ra=.03, fi=.23, cash=.01) if y < 2025 else \
         dict(eq=.39, pe=.15, re=.12, oars=.03, cr=.04, ra=.04, fi=.22, cash=.01)
-    add(y, "Public equity", w["eq"], "MSCI ACWI", r["eq"])
-    add(y, "Private equity", w["pe"], "Cambridge Associates US Private Equity", r["pe"])
-    add(y, "Real estate", w["re"], "real estate benchmark as listed", r["re"])
-    add(y, "Opportunistic and absolute return", w["oars"], "actuarial rate of return + 2%", r["oars"])
-    add(y, "Credit", w["cr"], "Credit Suisse Leveraged Loan + 2.5%", r["cr"])
-    add(y, "Real assets", w["ra"], "CPI + 5%", r["ra"])
-    add(y, "Fixed income", w["fi"], "Bloomberg US Aggregate", r["agg"])
+    add(y, "Public equity", w["eq"], "MSCI All Country World Index", r["eq"])
+    add(y, "Private equity", w["pe"], "Cambridge U.S. Private Equity Index (1Q Lag)", r["pe"])
+    add(y, "Real estate", w["re"], "Real Estate Benchmark", r["re"])
+    add(y, "Opportunistic and absolute return", w["oars"], "CRF Actuarial Return + 2%", r["oars"])
+    add(y, "Credit", w["cr"], "Credit Suisse Leveraged Loan Index + 2.5%", r["cr"])
+    add(y, "Real assets", w["ra"], "U.S. CPI + 5%", r["ra"])
+    add(y, "Fixed income", w["fi"], "Bloomberg Barclays Aggregate Bond Index" if y < 2024 else "Bloomberg U.S. Aggregate Bond Index", r["agg"])
     add(y, "Cash", w["cash"], "none listed; zero", 0.0)
 
 inputs = pd.DataFrame(rows)
