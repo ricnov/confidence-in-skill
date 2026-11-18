@@ -40,7 +40,8 @@ One row per fiscal year (ended 31 March, 2010–2025) and asset class: `year`, `
 (the Fund's long-term policy allocation, as a fraction), `benchmark` (the index as the report names it, or
 the substitute used where it lists none), `benchmark_return` (the index's one-year return, in percent),
 `report` (CAFR or ACFR and fiscal year), `pages` (the Investment Results and Asset Allocation tables), `url`
-(the report at osc.ny.gov). Source: the Annual Comprehensive Financial Report (Comprehensive Annual Financial Report before
+(the report at osc.ny.gov), `note` (the substitutions where no benchmark is listed, and the fiscal 2017
+real-assets figure, which the report prints as 2.40 for "U.S. CPI +5"). Source: the Annual Comprehensive Financial Report (Comprehensive Annual Financial Report before
 2022) of the New York State and Local Retirement System for each fiscal year, Investment Section, asset
 allocation and investment results. The sum over classes of weight times return is the policy benchmark
 `cis.panel.NY_POLICY_BENCHMARK`, which `cis.panel.clean_panel` uses for NYSLRS by default; the NYSLRS sheet's

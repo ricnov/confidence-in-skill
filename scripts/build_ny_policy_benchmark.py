@@ -42,11 +42,20 @@ URL = ("https://www.osc.ny.gov/files/retirement/resources/pdf/comprehensive-annu
 rows = []
 
 
+NOTES = {"none listed; absolute-return benchmark": "no benchmark listed for this class; the absolute-return benchmark is used, as in the collectors' sheet",
+         "none listed; zero": "no benchmark listed; zero is used (the Fund's own short-term return would add at most 6 bp a year to the benchmark)"}
+
+
 def add(year, cls, weight, benchmark, ret):
     report = ("CAFR" if year < 2022 else "ACFR") + " FY%d" % year
     pages = "Investment Results p. %d; Asset Allocation p. %d" % PAGES[year]
+    note = NOTES.get(benchmark, "")
+    if year == 2017 and cls == "Real assets":
+        note = "the report prints 2.40 for 'U.S. CPI +5', the inflation rate alone; taken as printed (CPI + 5 = 7.4 would give 10.37 for the year and t = 1.62)"
+    if year == 2010 and cls == "Absolute return":
+        note = "not in the table; the narrative (p. 65) says the program benchmark, the HFRX, returned 12.9 percent"
     rows.append(dict(year=year, asset_class=cls, policy_weight=weight, benchmark=benchmark, benchmark_return=ret,
-                     report=report, pages=pages, url=URL[0 if year < 2022 else 1] % year))
+                     report=report, pages=pages, url=URL[0 if year < 2022 else 1] % year, note=note))
 
 
 # fiscal 2010: domestic and international equity measured separately; bonds, cash and mortgages one class
@@ -54,7 +63,7 @@ add(2010, "Domestic equity", .35, "Russell 3000 Index", 52.44)
 add(2010, "International equity", .16, "MSCI All Country World Index Free ex US", 60.93)
 add(2010, "Private equity", .08, "Cambridge US Private Equity Index", 13.46)
 add(2010, "Real estate", .06, "NCREIF", -16.86)
-add(2010, "Absolute return", .05, "HFRX (narrative, p. 65: the program benchmark returned 12.9 percent)", HFRX[2010])
+add(2010, "Absolute return", .05, "HFRX", HFRX[2010])
 add(2010, "Bonds, cash and mortgages", .225, "Barclays Capital Aggregate Bond Index", 7.69)
 add(2010, "TIPS", .075, "Salomon Smith Barney Inflation Linked Index", 5.95)
 
